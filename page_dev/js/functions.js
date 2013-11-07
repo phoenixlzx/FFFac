@@ -65,17 +65,17 @@ $(document).ready(function() {
 		$(this).animate({height: '0px'},"fast").fadeIn('fast').animate({height: '500px'},500).animate({height: '100%'},"fast");
 	}
 	var sendready = function() {
-	 //put if...else here
-		//if success
-		$('div#sendsuccess').animate({},100,sendres);
-		//else fail
-		$('div#sendfail').animate({},100,sendres);
+			//if success
+				$('div#sendsuccess').animate({},0,sendres);
+			//else fail
+				$('div#sendfail').animate({},0,sendres);
 	}
-	var mfirea = function() {
+	var mfirea= function() {
 		$('#contact').animate({height: '100px'},"fast").fadeIn(800).animate({height: '540px'},600).animate({height: '100%'},"fast");
 	}
+
 	$('#username').html('example &lt;example@example.com&gt;');
-	$('#contact').animate({height: '100px'},"fast").fadeIn(800).animate({height: '540px'},600).animate({height: '100%'},"fast");
+	$('#contact').animate({},0,mfirea);
 	//send
 	$("#firemessage").click(function() {
 		$('#fireburn').fadeIn(500).animate({color:"#FF0000"},300);
