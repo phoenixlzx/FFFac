@@ -32,30 +32,25 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/special">特殊传送</a></li>
 					<li><a href="/about">关于FFF传送</a></li>
-					<li><a href="/contact">联系魔法师</a></li>
+					<li><a href="/contact">联系传送部长</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
-					<div class="form-group">
-						<input type="text" placeholder="Email" class="form-control" />
-					</div>
-					<div class="form-group">
-						<input type="password" placeholder="Password" class="form-control" />
-					</div>
-					<button type="submit" class="btn btn-danger">开始施法</button>
+					<button type="submit" class="btn btn-primary">加入传送部</button>
 				</form>
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>
+
 <!-- main -->
 	<div class="container"  id='wrap'>
 		<!-- send message -->
 		<div id="contact">
-			<h2><span class="FFFshort">&dagger;</span>&ensp;联系魔法部传送部长</h2>
-			<small>如果想要和FFF团魔法部传送部长联系，请在这里点火。</small>
-			<hr />
+			<h2><span class="FFFshort">&dagger;</span>&ensp;联系传送部长</h2>
+			<small>如果想要和FFF团传送部长联系，请在这里点火。</small>
+			<hr class='contact-hr' />
 			<div id="contact-inner">
 				<form class="form-horizontal" role="form" method="post">
-					<input type="hidden" name="_csrf" value=""/>
+					<input type="hidden" name="_csrf" value="" />
 					<div class="form-group">
 						<label for="username" class="col-lg-2 control-label">点火者名字</label>
 						<div class="col-lg-9">
@@ -65,18 +60,21 @@
 					<div class="form-group">
 						<label for="subject" class="col-lg-2 control-label">可燃物名称</label>
 						<div class="col-lg-9">
-							<input type="text" class="form-control" id="subject" name="subject" placeholder="燃烧汽油弹">
+							<input type="text" class="form-control" id="subject" name="subject" placeholder="不纯洁的异性恋" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="message" class="col-lg-2 control-label">可燃物信息</label>
 						<div class="col-lg-9">
-							<textarea class="form-control" id="message" name="message" rows="10"  placeholder="烧死异性恋！烧！"></textarea>
+							<textarea class="form-control" id="message" name="message" rows="10"  placeholder="不～可～饶～恕～!"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-lg-offset-2 col-lg-9">
-							<button type="button" class="btn btn-lg btn-danger" id='firemessage'>Fire！</button>
+							<button type="button" class="btn btn-lg btn-danger" id='firemessage'>
+								<span class="glyphicon glyphicon-fire" style='font-size: 20px;'></span>&ensp;<br>
+								<span class="glyphicon glyphicon-file" style='font-size: 30px; top:-3px'></span>
+							</button>
 						</div>
 					</div>
 				</form>
@@ -117,13 +115,13 @@
 						<span class="glyphicon glyphicon-fire"></span>
 					</span>
 				</h1>
-					<p style="text-align: center;color:#8d8d8d;font-size: 25px;">燃烧成功！</p>
+					<p class='msgres'>燃烧成功！</p>
 					<button type="button" class="btn btn-lg btn-danger btn-block goshort" id="morefire">
 						<span >Fire&ensp;More！</span>
 					</button>
 				<hr />
-				<div class="about-inner" style="text-align: center;color:#880000;">
-					<p style='color:#FF0000;font-size: 20px;font-weight:bold;'>　烧烧烧烧烧　　烧烧烧烧烧　　烧烧烧烧烧<br>
+				<div class="about-inner">
+					<p class='fffire'>　烧烧烧烧烧　　烧烧烧烧烧　　烧烧烧烧烧<br>
 						烧　　　　　　烧　　　　　　烧　　　<br>
 						烧烧烧烧　　　烧烧烧烧　　　烧烧烧烧<br>
 						烧　　　　　　烧　　　　　　烧　　　<br>
@@ -136,18 +134,18 @@
 			<div id="about">
 				<h1 style="text-align: center">
 					<span class='FFFshort'>
-						<span class="glyphicon glyphicon-fire"></span>
-						<span style='color:#880000;'>&thinsp;FFF传送&thinsp;</span>
-						<span class="glyphicon glyphicon-fire"></span>
+						<span style='font-size:60px;'>&dagger;</span>
+						<span style='color:#000000;'>&thinsp;FFF传送&thinsp;</span>
+						<span style='font-size:60px;'>&dagger;</span>
 					</span>
 				</h1>
-					<p style="text-align: center;color:#8d8d8d;font-size: 25px;">燃烧失败！</p>
-					<button type="button" class="btn btn-lg btn-danger btn-block goshort" id="fireagain">
+					<p class='msgres'>燃烧失败！</p>
+					<button type="button" class="btn btn-lg btn-primary btn-block goshort" id="fireagain">
 						<span >Fire&ensp;Again！</span>
 					</button>
 				<hr />
-				<div class="about-inner" style="text-align: center;color:#880000;">
-					<p style='color:#FF0000;font-size: 20px;font-weight:bold;'>　烧烧烧烧烧　　烧烧烧烧烧　　烧烧烧烧烧<br>
+				<div class="about-inner">
+					<p class='fffire' style="color: #000000;text-shadow: 0px 0px 0px rgba(255,0,0,0)">　烧烧烧烧烧　　烧烧烧烧烧　　烧烧烧烧烧<br>
 						烧　　　　　　烧　　　　　　烧　　　<br>
 						烧烧烧烧　　　烧烧烧烧　　　烧烧烧烧<br>
 						烧　　　　　　烧　　　　　　烧　　　<br>
