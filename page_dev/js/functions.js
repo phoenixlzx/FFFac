@@ -58,11 +58,19 @@ $(document).ready(function() {
 
 /* about */
 
-	$('div#wrap div#about').animate({height: '155px'},"fast").fadeIn(600).animate({height: '720px'},600).animate({height: '100%'},"fast");
+	$('div#wrap div#about')
+		.animate({height: '155px'},"fast")
+		.fadeIn(600)
+		.animate({height: '720px'},600)
+		.animate({height: '100%'},"fast");
 
 /* Fire message */
 	var sendres = function() {
-		$(this).animate({height: '0px'},"fast").fadeIn('fast').animate({height: '500px'},500).animate({height: '100%'},"fast");
+		$(this)
+			.animate({height: '0px'},"fast")
+			.fadeIn('fast')
+			.animate({height: '500px'},500)
+			.animate({height: '100%'},"fast");
 	}
 	var sendready = function() {
 			//if success
@@ -71,7 +79,11 @@ $(document).ready(function() {
 				$('div#sendfail').animate({},0,sendres);
 	}
 	var mfirea= function() {
-		$('#contact').animate({height: '100px'},"fast").fadeIn(800).animate({height: '540px'},600).animate({height: '100%'},"fast");
+		$('#contact')
+			.animate({height: '100px'},"fast")
+			.fadeIn(800)
+			.animate({height: '540px'},600)
+			.animate({height: '100%'},"fast");
 	}
 
 	$('#username').html('example &lt;example@example.com&gt;');
