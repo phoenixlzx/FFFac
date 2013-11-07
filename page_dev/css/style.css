@@ -1,15 +1,12 @@
 /* Sticky footer styles
 -------------------------------------------------- */
-
-html,
-body {
+ html, body {
 	height: 100%;
 	padding-top: 50px;
 	/* The html and body elements cannot have any padding or margin. */
 }
-
 /* Wrapper for page content to push down footer */
-#wrap {
+ #wrap {
 	min-height: 100%;
 	height: auto;
 	/* Negative indent footer by its height */
@@ -17,63 +14,52 @@ body {
 	/* Pad bottom by footer height */
 	padding: 0 0 60px;
 }
-
 /* Set the fixed height of the footer here */
-#footer {
+ #footer {
 	height: 60px;
 	background-color: #f5f5f5;
 }
-
-
 /* Custom page CSS
 -------------------------------------------------- */
-/* Not required for template or sticky footer method. */
 
-#wrap > .container {
+/* Not required for template or sticky footer method. */
+ #wrap > .container {
 	padding: 60px 15px 0;
 }
 .container .credit {
 	margin: 20px 0;
 }
-
 #footer > .container {
 	padding-left: 15px;
 	padding-right: 15px;
 }
-
 code {
 	font-size: 80%;
 }
 /* Index page */
-
-div.starter-template {
+ div.starter-template {
 	padding: 40px 15px;
 	text-align: center;
 }
-
 #wrap > .starter-template {
 	max-width: 850px;
 	padding: 15px;
 	margin: 0 auto;
 }
-
 .longurl {
 	max-width: 850px;
 	margin: 15px auto auto auto;
 	font-size: 30px;
 	height: auto;
 }
-
 .goshort {
 	max-width: 450px;
 	font-size: 30px;
 	height: auto;
 	margin: auto;
 }
-
 /* About page */
-
-#about {
+ #about {
 	margin: auto auto 20px auto;
 	padding: 20px 40px 40px 40px;
 	position: static;
@@ -82,15 +68,12 @@ div.starter-template {
 	background: rgba(255, 255, 255, 0.7);
 	border-radius: 5px;
 }
-
 #about>.about-inner h1, h2, h3, h4, h5, h6 {
 	text-align: center;
 }
-
 #about>.about-inner img {
 	width: 100%;
 }
-
 span.firefire {
 	color:#D00000;
 	font-size:35px;
@@ -105,7 +88,6 @@ span.FFFshort {
 	font-size:45px;
 }
 /* Contact page */
-
 #contact {
 	margin: auto auto 20px auto;
 	padding: 20px 40px 40px 40px;
@@ -115,12 +97,10 @@ span.FFFshort {
 	background: rgba(255, 255, 255, 0.7);
 	border-radius: 5px;
 }
-
 #contact-inner {
 	margin: auto;
 	padding: 10px 40px 10px 0;
 }
-
 #contact > h2 {
 	display: inline-block;
 	padding-left: 20px;
@@ -130,13 +110,16 @@ span.FFFshort {
 	padding-left: 10px;
 	color: #8d8d8d;
 }
-
 textarea#message {
 	max-width: 600px;
 }
-
-div#fireburn {
+#fireburn {
+	display: none;
 	position:relative;
-	top: 50px;
-	margin:-100px;
+	top: -40px;
+	left: 15%;
+}
+span.FFFshort {
+	color:#bc0000;
+	font-size:45px;
 }
