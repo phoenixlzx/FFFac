@@ -57,7 +57,6 @@ $(document).ready(function() {
 	});
 
 /* about */
-
 	$('div#wrap div#about')
 		.animate({height: '155px'},"fast")
 		.fadeIn(600)
@@ -67,16 +66,16 @@ $(document).ready(function() {
 /* Fire message */
 	var sendres = function() {
 		$(this)
-			.animate({height: '0px'},"fast")
+			.animate({height: '0px'},1)
 			.fadeIn('fast')
 			.animate({height: '500px'},500)
 			.animate({height: '100%'},"fast");
 	}
 	var sendready = function() {
 			//if success
-				$('div#sendsuccess').animate({},0,sendres);
+				$('div#sendsuccess').animate({height: '0px'},1,sendres);
 			//else fail
-				$('div#sendfail').animate({},0,sendres);
+				$('div#sendfail').animate({height: '0px'},1,sendres);
 	}
 	var mfirea= function() {
 		$('#contact')
@@ -86,8 +85,8 @@ $(document).ready(function() {
 			.animate({height: '100%'},"fast");
 	}
 
-	$('#username').html('example &lt;example@example.com&gt;');
-	$('#contact').animate({},0,mfirea);
+	$('#usermail').html('example &lt;example@example.com&gt;');
+	$('#contact').animate({height: '100px'},0,mfirea);
 	//send
 	$("#firemessage").click(function() {
 		$('#fireburn').fadeIn(500).animate({color:"#FF0000"},300);
@@ -106,6 +105,12 @@ $(document).ready(function() {
 		$('div#sendfail').fadeOut("fast",mfirea);
 	});
 
+/* user info */
+	$('div#wrap div#user')
+		.animate({height: '130px'},"fast")
+		.fadeIn(600)
+		.animate({height: '520px'},600)
+		.animate({height: '100%'},"fast");
 
 
 //end jquery

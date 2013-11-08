@@ -71,6 +71,7 @@ code {
 	height: 100%;
 	background: rgba(250, 250, 250, 0.55);
 	border-radius: 5px;
+	overflow: hidden;
 }
 #about>.about-inner h1, h2, h3, h4, h5, h6 {
 	text-align: center;
@@ -102,6 +103,7 @@ span.FFFshort {
 	height: 100%;
 	background: rgba(250, 250, 250, 0.55);
 	border-radius: 5px;
+	overflow: hidden;
 }
 #contact-inner {
 	margin: auto;
@@ -115,12 +117,6 @@ span.FFFshort {
 	display: inline-block;
 	padding-left: 10px;
 	color: #8d8d8d;
-}
-hr.contact-hr {
-	margin: 1px;
-}
-textarea#message {
-	max-width: 600px;
 }
 #fireburn {
 	display: none;
@@ -149,4 +145,28 @@ p.msgres{
 	text-align: center;
 	color:#8d8d8d;
 	font-size: 25px;
+}
+
+/* userinfo */
+div#user {
+	display: none ;
+	margin: -5% auto 20px auto;
+	padding: 10px 40px 10px 40px;
+	position: static;
+	width: 70%;
+	height: 100%;
+	background: rgba(250, 250, 250, 0.55);
+	border-radius: 5px;
+	overflow: hidden;
+}
+span.fffcard {
+	position:relative;
+	top: -30px;
+	left: -29%;
+	width: 100%;
+}
+button#userinfochange {
+	position: relative;
+	left: -30%;
+	width: 20%;
 }

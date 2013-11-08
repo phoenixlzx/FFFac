@@ -41,7 +41,7 @@
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>
-	
+
 <!-- main -->
 	<div class="container" id='wrap'>
 		<div class="starter-template">
@@ -51,7 +51,7 @@
 						<img src="image/fff-header.jpg" alt="FFF" width="600" height="250" style='border-radius: 10px;' />
 					</label>
 					<div id='shortfiresp'>
-						<input type="text" class="form-control longurl" id="shorturlsp" name='shorturlsp' placeholder="F！F！F！"/>
+						<input type="text" class="form-control longurl" id="shorturlsp" name='shorturlsp' placeholder="F！F！F！" />
 					</div>
 				</div>
 				<button type="button" class="btn btn-lg btn-danger btn-block goshort" id="fireshoutsp">

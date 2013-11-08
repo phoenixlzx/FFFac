@@ -43,9 +43,71 @@
 
 <!-- main -->
 	<div class="container" id='wrap'>
-		<!-- something -->
-	</div>
-	
+		<div id="notification">
+		</div>
+		<div class="container" style="min-height: 500px;">
+			<div id="user">
+				<h1 style="text-align: center">
+					<span class="glyphicon glyphicon-fire firefire"></span>
+					<span class='FFFshort'>&thinsp;FFF团卡</span>
+					<span class="glyphicon glyphicon-fire firefire"></span>
+					<br />
+					<small id='username'>zozyo</small>
+				</h1>
+				<hr style='margin: 1px;' />
+				<h2 style="display: inline-block; margin-left: 20px;">
+					团员信息更改表:&nbsp;
+					<small style="font-size: 15px">团员信息更新后，需要重新核对暗号</small>
+				</h2>
+				<div>
+					<form method="post" id="user-form" class="form-horizontal" role="form">
+						<input type="hidden" name="_csrf" />
+						<fieldset>
+							<br>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">主人的名字</label>
+								<div class="col-lg-7">
+									<p class="form-control-static">zozyo</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="col-lg-3 control-label">E-Mail</label>
+								<div class="col-lg-7">
+									<input class="form-control" type="text" id="email" name="email" value="zzy.touhou@gmail.com" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label" for="password">当前契约密文</label>
+								<div class="col-lg-7">
+									<input type="password" class="form-control" id="password" name="password" />
+								</div>
+							</div>
+							<hr />
+							<div class="form-group">
+								<label class="col-lg-3 control-label" for="newpass">新契约密文</label>
+								<div class="col-lg-7">
+									<input type="password" class="form-control" id="newpass" name="newpass" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label" for="password-repeat">确认契约密文</label>
+								<div class="col-lg-7">
+									<input type="password" class="form-control" id="password-repeat" name="password-repeat" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-offset-3 col-lg-10">
+									<button type="submit" class="btn btn-primary">记住</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.container -->
+
+
 <!-- footer -->
 	<div id="footer">
 		<div class="container">
