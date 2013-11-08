@@ -5,7 +5,6 @@
 	<meta charset="utf-8" />
 	<link rel="icon" 	   href="image/fff-icon-001.png" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,7 +34,9 @@
 					<li><a href="/contact">联系传送部长</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
-					<button type="submit" class="btn btn-primary">加入传送部</button>
+					<small style='color: #F00'>壮哉我大FFF团！&thinsp;!&emsp;</small>
+					<a href='/account' class="btn btn-success">FFF团卡</a>
+					<button type="submit" class="btn btn-primary">贤者模式</button>
 				</form>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -47,14 +48,14 @@
 		<div id="contact">
 			<h2><span class="FFFshort">&dagger;</span>&ensp;联系传送部长</h2>
 			<small>如果想要和FFF团传送部长联系，请在这里点火。</small>
-			<hr style='margin: 1px;' />
+			<hr style='margin: 1px;	box-shadow: 0px -10px 40px 5px rgba(255,70,0,0.35);' />
 			<div id="contact-inner">
 				<form class="form-horizontal" role="form" method="post">
 					<input type="hidden" name="_csrf" />
 					<div class="form-group">
 						<label for="username" class="col-lg-2 control-label">点火者名字</label>
 						<div class="col-lg-9">
-							<p class="form-control-static" id="usermail"></p>
+							<p class="form-control-static"><span id="username"></span>&emsp;<span id='email'></span></p>
 						</div>
 					</div>
 					<div class="form-group">

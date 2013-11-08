@@ -5,7 +5,6 @@
 	<meta charset="utf-8" />
 	<link rel="icon" 	   href="image/fff-icon-001.png" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -40,7 +39,54 @@
 
 <!-- main -->
 	<div class="container" id='wrap'>
-		<!-- something -->
+		<div id="signin">
+			<h1 style="text-align: center">
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class='FFFshort'>FFF团卡</span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<br />
+				<small>核对FFF暗号&emsp;</small>
+			</h1>
+			<hr style='box-shadow: 0px -10px 40px 5px rgba(255,70,0,0.35);' />
+			<form class="form-horizontal" method="post">
+				<input type="hidden" name="_csrf" />
+				<div style='overflow: hidden;height: 0px;' id='loginform'>
+					<div class="form-group">
+						<label class="col-lg-3 control-label" for="username">团员名</label>
+						<div class='col-lg-7'>
+							<input type="text" name="username" class="form-control" id="username" placeholder="Sugawa Ryou" autofocus />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-3 control-label" for="password">FFF暗号</label>
+						<div class='col-lg-7'>
+							<input type="password" name="password" class="form-control" id="password" placeholder="FFF" />
+						</div>
+					</div>
+					<p class='msgres' style='color: #BC0000;display: none;' id='loginsuccess'>
+						<span class="glyphicon glyphicon-fire"></span>
+						<span>核对成功</span>
+						<span class="glyphicon glyphicon-fire"></span>
+					</p>
+					<p class='msgres' style='color: #0077EE;display: none;' id='loginfail'>
+						<span class="glyphicon glyphicon-tint" style='color: #0077EE'></span>
+						<span>核对失败</span>
+						<span class="glyphicon glyphicon-tint" style='color: #0077EE'></span>
+					</p>
+				</div>
+				<hr style='box-shadow: 0px 10px 40px 5px rgba(255,70,0,0.35);' />
+				<div class="form-group" style='margin-bottom: 5px'>
+					<label>
+						<p class="help-block">&emsp;如果您在使用公共/他人的设备，请在完成操作后进入贤者模式。</p>
+					</label>
+				</div>
+				<button type="button" class="btn btn-lg btn-danger btn-block" id='btnsignin'>核对</button>
+				<br>
+				<div class="form-group">
+					<a href="/forgot-password"><small>重新配对暗号</small></a>
+				</div>
+			</form>
+		</div>
 	</div>
 	
 <!-- footer -->

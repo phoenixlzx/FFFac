@@ -5,7 +5,6 @@
 	<meta charset="utf-8" />
 	<link rel="icon" 	   href="image/fff-icon-001.png" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,7 +34,10 @@
 					<li><a href="/contact">联系传送部长</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
-					<button type="submit" class="btn btn-primary">加入传送部</button>
+					<small style='color: #F00'>天下有情人终成兄妹&thinsp;!&emsp;</small>
+					<a href='/login' class="btn btn-success">核对暗号</a>
+					<a href='/account' class="btn btn-success">FFF团卡</a>
+					<button type="submit" class="btn btn-primary">贤者模式</button>
 				</form>
 			</div><!--/.nav-collapse -->
 		</div>

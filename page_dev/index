@@ -5,7 +5,6 @@
 	<meta charset="utf-8" />
 	<link rel="icon" 	   href="image/fff-icon-001.png" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,9 +34,8 @@
 					<li><a href="/contact">联系传送部长</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
-					<button type="submit" class="btn btn-primary">加入传送部</button>
+					<a href='/login' class="btn btn-success">核对暗号</a>
 				</form>
-				
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>
@@ -51,7 +49,7 @@
 						<img src="image/fff-header.jpg" alt="FFF" width="600" height="250" style='border-radius: 10px;' />
 					</label>
 					<div id='shortfire'>
-						<input type="text" class="form-control longurl" id="shorturl" name='shorturl' placeholder="烧！烧！烧！"/>
+						<input type="text" class="form-control longurl" id="shorturl" name='shorturl' placeholder="烧！烧！烧！" autofocus />
 					</div>
 				</div>
 				<button type="button" class="btn btn-lg btn-danger btn-block goshort" id="fireshout">

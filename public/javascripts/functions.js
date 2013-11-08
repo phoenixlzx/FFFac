@@ -1,5 +1,6 @@
 $(document).ready(function() {
-
+	$('*#username').html('example');
+	$('*#email').html('&lt;example@example.com&gt;')
 /* Long to Short  index.ver */
 	var fadeshort = function() {
 		$('#fireshout span:last').fadeIn("fast");
@@ -57,7 +58,6 @@ $(document).ready(function() {
 	});
 
 /* about */
-
 	$('div#wrap div#about')
 		.animate({height: '155px'},"fast")
 		.fadeIn(600)
@@ -67,18 +67,18 @@ $(document).ready(function() {
 /* Fire message */
 	var sendres = function() {
 		$(this)
-			.animate({height: '0px'},"fast")
+			.animate({height: '0px'},1)
 			.fadeIn('fast')
 			.animate({height: '500px'},500)
 			.animate({height: '100%'},"fast");
 	}
 	var sendready = function() {
 			//if success
-				$('div#sendsuccess').animate({},0,sendres);
+				$('div#sendsuccess').animate({height: '0px'},1,sendres);
 			//else fail
-				$('div#sendfail').animate({},0,sendres);
+				$('div#sendfail').animate({height: '0px'},1,sendres);
 	}
-	var mfirea= function() {
+	var mfirea = function() {
 		$('#contact')
 			.animate({height: '100px'},"fast")
 			.fadeIn(800)
@@ -86,8 +86,7 @@ $(document).ready(function() {
 			.animate({height: '100%'},"fast");
 	}
 
-	$('#usermail').html('example &lt;example@example.com&gt;');
-	$('#contact').animate({},0,mfirea);
+	$('#contact').animate({height: '100px'},0,mfirea);
 	//send
 	$("#firemessage").click(function() {
 		$('#fireburn').fadeIn(500).animate({color:"#FF0000"},300);
@@ -106,6 +105,72 @@ $(document).ready(function() {
 		$('div#sendfail').fadeOut("fast",mfirea);
 	});
 
+/* account */
+	var accountchangeres = function() {
+		$(this)
+			.fadeIn('fast')
+			.animate({height: '500px'},500)
+			.animate({height: '100%'},"fast");
+	}
+	var accountchangeready = function() {
+			//if success
+				$('div#accountchangesuccess').animate({height: '0px'},1,accountchangeres);
+			//else fail
+				$('div#accountchangefail').animate({height: '0px'},1,accountchangeres);
+	}
+	var backaccount = function() {
+		$('div.accountform')
+			.animate({height: '130px'},"fast")
+			.fadeIn(600)
+			.animate({height: '520px'},600)
+			.animate({height: '100%'},"fast");
+	}
+
+	$('div#wrap div.accountform').animate({height: '130px'},"fast").fadeIn(600).animate({height: '520px'},600).animate({height: '100%'},"fast");
+	//account change
+	$('#accountchange').click(function() {
+		$('div.accountform').animate({height: "0px"},600).fadeOut(1,accountchangeready);
+	});
+	//back account change
+	$('#successbackaccount').click(function() {
+		$('div#accountchangesuccess').fadeOut("fast",backaccount);
+	});
+	$('#failbackaccount').click(function() {
+		$('div#accountchangefail').fadeOut("fast",backaccount);
+	});
+/* login */
+	var signinready = function() {
+			//if success
+				//$('div#loginform div.form-group').fadeOut('fast');
+				//$('#loginsuccess').fadeIn('fast',function(){$('div#loginform').animate({height: '45px'},300);});
+				//jump to special page
+			//else fail
+				$('div#loginform div.form-group').fadeOut('fast',function(){
+					$('#loginfail').fadeIn('fast',function(){
+						$('div#loginform').animate({height: '45px'},400,function(){
+							$('#loginsuccess').animate({height:'123px'},800,function(){
+								$('div#loginform').animate({height: '0px'},600,function(){
+									$('#loginfail').fadeOut(100,function(){
+										$('div#loginform div.form-group').fadeIn(100,function(){
+											$('div#loginform').animate({height: '96px'},300).animate({height: '100%'},"fast",function(){
+												$('#password').val(null).select();
+												$('button#btnsignin').fadeIn('fast');
+											});
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+	}
+
+	$('div#loginform').animate({height: '0px'},300).animate({height: '96px'},400).animate({height: '100%'},"fast");
+	//login go
+	$('button#btnsignin').click(function() {
+		$(this).fadeOut('fast');
+		$('div#loginform').animate({height: '0px'},400,signinready);
+	});
 
 
 //end jquery
