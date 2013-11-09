@@ -232,7 +232,7 @@ $(document).ready(function() {
 									$('#signupfail').fadeOut(100,function(){
 										$('div#signupform div.form-group').fadeIn(100,function(){
 											$('div#signupform').animate({height: '196px'},300).animate({height: '100%'},"fast",function(){
-												$('#username').val(null).select();
+												$('#email').val(null).select();
 												$('button#btnsignup').fadeIn('fast');
 												$('div#signupform').stop(true);
 											});
