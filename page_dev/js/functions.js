@@ -1,6 +1,28 @@
 $(document).ready(function() {
+/* random nav motd */
+	var motdlist = [
+		'同志们，高举火把，冲向情侣，为理想献身',
+		'天下有情人终成兄妹',
+		'壮哉我大FFF团',
+		'我们的事业是正义的',
+		'烧死异性恋',
+		'燃烧吧&thinsp;!&thinsp;圣战日',
+		'异端审判',
+		'不～可～饶～恕～',
+		'让火焰净化一切叛徒',
+		'死刑',
+		'给予异端者死的制裁',
+		'异端审问，开庭',
+		'烈焰中舞动的火花，将赐予邪恶异性交往以天罚',
+		'烧',
+		'圣战不息',
+	];
+	var motdw = motdlist[Math.floor(Math.random()*motdlist.length)];
+ 	$('#navmotd').html(motdw + '&thinsp;!&emsp;');
+/* userinfo */
 	$('*#username').html('example');
 	$('*#email').html('&lt;example@example.com&gt;')
+
 /* Long to Short  index.ver */
 	var fadeshort = function() {
 		$('#fireshout span:last').fadeIn("fast");
@@ -126,7 +148,11 @@ $(document).ready(function() {
 			.animate({height: '100%'},"fast");
 	}
 
-	$('div#wrap div.accountform').animate({height: '130px'},"fast").fadeIn(600).animate({height: '520px'},600).animate({height: '100%'},"fast");
+	$('div#wrap div.accountform')
+		.animate({height: '130px'},"fast")
+		.fadeIn(600)
+		.animate({height: '520px'},600)
+		.animate({height: '100%'},"fast");
 	//account change
 	$('#accountchange').click(function() {
 		$('div.accountform').animate({height: "0px"},600).fadeOut(1,accountchangeready);
@@ -138,23 +164,32 @@ $(document).ready(function() {
 	$('#failbackaccount').click(function() {
 		$('div#accountchangefail').fadeOut("fast",backaccount);
 	});
+
 /* login */
 	var signinready = function() {
 			//if success
-				//$('div#loginform div.form-group').fadeOut('fast');
-				//$('#loginsuccess').fadeIn('fast',function(){$('div#loginform').animate({height: '45px'},300);});
-				//jump to special page
+			/*
+				$('div#loginform div.form-group').fadeOut('fast');
+				$('#loginsuccess').fadeIn('fast',function(){
+					$('div#loginform').animate({height: '45px'},300,function(){
+						$('#loginfail').animate({height:'123px'},800,function(){
+							window.location = "/special"
+						});
+					});
+				});
+			*/
 			//else fail
 				$('div#loginform div.form-group').fadeOut('fast',function(){
 					$('#loginfail').fadeIn('fast',function(){
 						$('div#loginform').animate({height: '45px'},400,function(){
-							$('#loginsuccess').animate({height:'123px'},800,function(){
-								$('div#loginform').animate({height: '0px'},600,function(){
+							$('#loginsuccess').animate({height:'123px'},1000,function(){
+								$('div#loginform').animate({height: '0px'},500,function(){
 									$('#loginfail').fadeOut(100,function(){
 										$('div#loginform div.form-group').fadeIn(100,function(){
 											$('div#loginform').animate({height: '96px'},300).animate({height: '100%'},"fast",function(){
 												$('#password').val(null).select();
 												$('button#btnsignin').fadeIn('fast');
+												$('div#loginform').stop(true);
 											});
 										});
 									});
@@ -165,13 +200,84 @@ $(document).ready(function() {
 				});
 	}
 
-	$('div#loginform').animate({height: '0px'},300).animate({height: '96px'},400).animate({height: '100%'},"fast");
+	$('div#loginform')
+		.animate({height: '0px'},300)
+		.animate({height: '96px'},400)
+		.animate({height: '100%'},"fast");
 	//login go
 	$('button#btnsignin').click(function() {
 		$(this).fadeOut('fast');
 		$('div#loginform').animate({height: '0px'},400,signinready);
 	});
 
+/* signup */
+	var signupready = function() {
+			//if success
+			/*
+				$('div#signupform div.form-group').fadeOut('fast');
+				$('#signupsuccess').fadeIn('fast',function(){
+					$('div#signupform').animate({height: '45px'},300,function(){
+						$('#signupfail').animate({height:'123px'},800,function(){
+							window.location = "/special"
+						});
+					});
+				});
+			*/
+			//else fail
+				$('div#signupform div.form-group').fadeOut('fast',function(){
+					$('#signupfail').fadeIn('fast',function(){
+						$('div#signupform').animate({height: '45px'},800,function(){
+							$('#signupsuccess').animate({height:'123px'},1000,function(){
+								$('div#signupform').animate({height: '0px'},500,function(){
+									$('#signupfail').fadeOut(100,function(){
+										$('div#signupform div.form-group').fadeIn(100,function(){
+											$('div#signupform').animate({height: '196px'},300).animate({height: '100%'},"fast",function(){
+												$('#username').val(null).select();
+												$('button#btnsignup').fadeIn('fast');
+												$('div#signupform').stop(true);
+											});
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+	}
+
+	$('div#signupform')
+		.animate({height: '0px'},300)
+		.animate({height: '196px'},400)
+		.animate({height: '100%'},"fast");
+	//login go
+	$('button#btnsignup').click(function() {
+		$(this).fadeOut('fast');
+		$('div#signupform').animate({height: '0px'},400,signupready);
+	});
+
+/* forget password */
+	var forgotpwready = function() {
+				$('div#forgotpwform div.form-group').fadeOut('fast');
+				$('#forgotpwsuccess').fadeIn('fast',function(){
+					$('div#forgotpwform').animate({height: '70px'},300,function(){
+						$('button#btnforgotpw').animate({height:'60px'},1500,function(){
+								$('div#forgotpwform').animate({height: '0px'},500,function(){
+									window.location = "/login"
+								})
+						});
+					});
+				});
+	}
+
+	$('div#forgotpwform')
+		.animate({height: '0px'},300)
+		.animate({height: '49px'},400)
+		.animate({height: '100%'},"fast");
+	//login go
+	$('button#btnforgotpw').click(function() {
+		$(this).fadeOut('fast');
+		$('div#forgotpwform').animate({height: '0px'},400,forgotpwready);
+	});
 
 //end jquery
 });

@@ -34,6 +34,7 @@
 					<li><a href="/contact">联系传送部长</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
+					<a href='/signup' class="btn btn-warning">加入传送部</a>
 					<a href='/login' class="btn btn-success">核对暗号</a>
 				</form>
 			</div><!--/.nav-collapse -->
@@ -56,11 +57,13 @@
 				<p>使用业务机器种类丰富,当然自备道具也是非常欢迎~</p>
 				<p>初学者各位也无需担心!会有温柔的前辈悉心教导!</p>
 				<br>
-				<p class='fffire'>　烧烧烧烧烧　　烧烧烧烧烧　　烧烧烧烧烧<br>
-					烧　　　　　　烧　　　　　　烧　　　<br>
-					烧烧烧烧　　　烧烧烧烧　　　烧烧烧烧<br>
-					烧　　　　　　烧　　　　　　烧　　　<br>
-					烧　　　　　　烧　　　　　　烧　　　</p>
+				<div class='fffire'>
+					<p>烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧</p>
+					<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
+					<p>烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧</p>
+					<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
+					<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
+				</div>
 				<br>
 				<img src="image/FFFFFFFF.gif"  alt="FFFFFFFF" style='max-width: 356px;'>
 			</div>
