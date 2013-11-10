@@ -1,0 +1,19 @@
+This is a ReadMe File.
+
+Files in Project:
+	--config.php		Global params & Mysql link
+	--jump.php			Jumpto Page 
+
+
+MySQL datebase:
+	Table user:
+		|username <varchar64>	|id <int>	|passwd <varchar64>	|Email <varchar100>	|level <tinyint>	|
+	Table url:
+		|id <char10>	|url <text>	|type <tinyint>	|text <TEXT>	|userid	<int>	|
+	Table log:
+		|time <timestamp>	|action <text>	|
+
+
+
+
+

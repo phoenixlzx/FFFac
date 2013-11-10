@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+	<title>FFF传送</title>
+	<meta name="keywords" content="FFF传送" />
+	<meta charset="utf-8" />
+	<link rel="icon" 	   href="image/fff-icon-001.png" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="/javascripts/html5shiv.js"></script>
+	<script src="/javascripts/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body  background="image/a.png">
+<!-- nav bar -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><span class="glyphicon glyphicon-fire firefiresmall"></span>&thinsp;FFF传送</a>
+			</div>
+
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/special">特殊传送</a></li>
+					<li><a href="/about">关于FFF传送</a></li>
+					<li><a href="/contact">联系传送部长</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<a href='/login' class="btn btn-success">核对暗号</a>
+				</form>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+
+<!-- main -->
+	<div class="container" id='wrap'>
+		<div id="signup">
+			<h1 style="text-align: center">
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class='FFFshort'>FFF团卡</span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<br />
+				<small>加入FFF团传送部&ensp;</small>
+			</h1>
+			<hr style='box-shadow: 0px -10px 40px 5px rgba(255,70,0,0.35);' />
+			<form class="form-horizontal" method="post">
+				<input type="hidden" name="_csrf" />
+				<div style='overflow: hidden;height: 0px;' id='signupform'>
+					<div class="form-group">
+						<label class="col-lg-3 control-label" for="username">团员名</label>
+						<div class='col-lg-7'>
+							<input type="text" name="username" class="form-control" id="username" placeholder="Sugawa Ryou" autofocus />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-3 control-label" for="email">E-Mail</label>
+						<div class='col-lg-7'>
+							<input type="email" name="email" class="form-control" id="email" placeholder="example@example.com" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-3 control-label" for="password">FFF暗号</label>
+						<div class='col-lg-7'>
+							<input type="password" name="password" class="form-control" id="password" placeholder="FFF" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-3 control-label" for="password-repeat">确认暗号</label>
+						<div class='col-lg-7'>
+							<input type="password" name="password-repeat" class="form-control" id="password-repeat" placeholder="FFF" />
+						</div>
+					</div>
+					<p class='msgres' style='color: #BC0000;display: none;' id='signupsuccess'>
+						<span class="glyphicon glyphicon-fire"></span>
+						<span>入部成功</span>
+						<span class="glyphicon glyphicon-fire"></span>
+					</p>
+					<p class='msgres' style='color: #0077EE;display: none;' id='signupfail'>
+						<span class="glyphicon glyphicon-tint" style='color: #0077EE'></span>
+						<span>入部失败</span>
+						<span class="glyphicon glyphicon-tint" style='color: #0077EE'></span>
+					</p>
+				</div>
+				<hr style='box-shadow: 0px 10px 40px 5px rgba(255,70,0,0.35);' />
+				<button type="button" class="btn btn-lg btn-danger btn-block" id='btnsignup'>
+					<span class="glyphicon glyphicon-fire firefiresmall"></span>
+					<span>FFF!</span>
+					<span class="glyphicon glyphicon-fire firefiresmall"></span>
+				</button>
+				<br>
+				<div class="form-group">
+					<a href="/forgot-password"><small>重新配对暗号</small></a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+<!-- footer -->
+	<div id="footer">
+		<div class="container">
+			<p class="text-muted credit">
+				2013&emsp;FFF传送&emsp;
+				<span class="glyphicon glyphicon-fire firefiresmall"></span>
+				&emsp;我们的事业是正义的！
+			</p>
+		</div>
+	</div>
+
+<!--Bootstrap-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/functions.js"></script>
+</body>
+</html>

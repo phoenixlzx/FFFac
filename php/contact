@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<head>
+	<title>FFF传送</title>
+	<meta name="keywords" content="FFF传送" />
+	<meta charset="utf-8" />
+	<link rel="icon" 	   href="image/fff-icon-001.png" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="/javascripts/html5shiv.js"></script>
+	<script src="/javascripts/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body  background="image/a.png">
+<!-- nav bar -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><span class="glyphicon glyphicon-fire firefiresmall"></span>&thinsp;FFF传送</a>
+			</div>
+
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/special">特殊传送</a></li>
+					<li><a href="/about">关于FFF传送</a></li>
+					<li><a href="/contact">联系传送部长</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<small style='color: #F00' id='navmotd'>同志们，高举火把，冲向情侣，为理想献身&thinsp;!&emsp;</small>
+					<a href='/account' class="btn btn-success">FFF团卡</a>
+					<button type="submit" class="btn btn-primary">贤者模式</button>
+				</form>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+
+<!-- main -->
+	<div class="container"  id='wrap'>
+		<!-- send message -->
+		<div id="contact">
+			<h2><span class="FFFshort">&dagger;</span>&ensp;联系传送部长</h2>
+			<small>如果想要和FFF团传送部长联系，请在这里点火。</small>
+			<hr style='margin: 1px;	box-shadow: 0px -10px 40px 5px rgba(255,70,0,0.35);' />
+			<div id="contact-inner">
+				<form class="form-horizontal" role="form" method="post">
+					<input type="hidden" name="_csrf" />
+					<div class="form-group">
+						<label for="username" class="col-lg-2 control-label">点火者名字</label>
+						<div class="col-lg-9">
+							<p class="form-control-static"><span id="username"></span>&emsp;<span id='email'></span></p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="subject" class="col-lg-2 control-label">可燃物名称</label>
+						<div class="col-lg-9">
+							<input type="text" class="form-control" id="subject" name="subject" placeholder="不纯洁的异性恋" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="message" class="col-lg-2 control-label">可燃物信息</label>
+						<div class="col-lg-9">
+							<textarea class="form-control" id="message" name="message" rows="10"  placeholder="不～可～饶～恕～!" style='max-width: 600px;'></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-offset-2 col-lg-9">
+							<button type="button" class="btn btn-lg btn-danger" id='firemessage'>
+								<span class="glyphicon glyphicon-fire" style='font-size: 20px;'></span>&ensp;<br>
+								<span class="glyphicon glyphicon-file" style='font-size: 30px; top:-3px'></span>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id='fireburn'>
+			<div>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+				<span class="glyphicon glyphicon-fire firefire"></span>
+			</div>
+		</div>
+		<!-- sendmessage success -->
+		<div class="container" style='display: none;overflow: hidden;' id='sendsuccess'>
+			<div id="about">
+				<h1 style="text-align: center">
+					<span class='FFFshort'>
+						<span class="glyphicon glyphicon-fire"></span>
+						<span style='color:#880000;'>&thinsp;FFF传送&thinsp;</span>
+						<span class="glyphicon glyphicon-fire"></span>
+					</span>
+				</h1>
+					<p class='msgres'>燃烧成功！</p>
+					<button type="button" class="btn btn-lg btn-danger btn-block goshort" id="morefire">
+						<span >Fire&ensp;More！</span>
+					</button>
+				<hr />
+				<div class="about-inner">
+					<div class='fffire'>
+						<p>烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧</p>
+						<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
+						<p>烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧</p>
+						<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
+						<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- sendmessage fail -->
+		<div class="container" style='display: none;overflow: hidden;' id='sendfail'>
+			<div id="about">
+				<h1 style="text-align: center">
+					<span class='FFFshort'>
+						<span class="glyphicon glyphicon-tint" style='color: #0077EE'></span>
+						<span style='color:#000000;'>&thinsp;FFF传送&thinsp;</span>
+						<span class="glyphicon glyphicon-tint" style='color: #0077EE'></span>
+					</span>
+				</h1>
+					<p class='msgres'>燃烧失败！</p>
+					<button type="button" class="btn btn-lg btn-primary btn-block goshort" id="fireagain">
+						<span >Fire&ensp;Again！</span>
+					</button>
+				<hr />
+				<div class="about-inner">
+					<div class='fffire'>
+						<p>烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧</p>
+						<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
+						<p>烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧</p>
+						<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
+						<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- footer -->
+	<div id="footer">
+		<div class="container">
+			<p class="text-muted credit">
+				2013&emsp;FFF传送&emsp;
+				<span class="glyphicon glyphicon-fire firefiresmall"></span>
+				&emsp;我们的事业是正义的！
+			</p>
+		</div>
+	</div>
+
+<!--Bootstrap-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/functions.js"></script>
+</body>
+</html>
