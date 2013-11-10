@@ -34,7 +34,7 @@
 					<li><a href="/contact">联系传送部长</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
-					<small style='color: #F00' id='navmotd'>同志们，高举火把，冲向情侣，为理想献身&thinsp;!&emsp;</small>
+					<small style='color: #F00' id='navmotd'>烧&thinsp;!&emsp;</small>
 					<a href='/account' class="btn btn-success">FFF团卡</a>
 					<button type="submit" class="btn btn-primary">贤者模式</button>
 				</form>
@@ -51,11 +51,15 @@
 						<img src="image/fff-header.jpg" alt="FFF" width="600" height="250" style='border-radius: 10px;' />
 					</label>
 					<div id='shortfiresp'>
-						<input type="text" class="form-control longurl" id="shorturlsp" name='shorturlsp' placeholder="F！F！F！" autofocus />
+						<label class="sr-only" for="exampleInputEmail2">Put long url</label>
+						<input type="text" class="form-control longurl form-inline form-control" id="longurlsp" name='longurlsp' placeholder="不～可～饶～恕～!" autofocus />
+						<label class="sr-only" for="exampleInputEmail2">Put short url</label>
+						<input type="text" class="form-control longurl form-inline form-control" id="shorturlsp" name='shorturlsp' placeholder="FFF" />
+						<input type="text" class="form-control longurl form-inline form-control" id="shorturlsp" name='shorturlsp' placeholder="http://fff.ac/" disabled/>
 					</div>
 				</div>
-				<button type="button" class="btn btn-lg btn-danger btn-block goshort" id="fireshoutsp">
-					<span style="display: inline;">大火球术！</span>
+				<button type="button" class="btn btn-lg btn-danger btn-block goshortsp" id="fireshoutsp">
+					<span class="glyphicon glyphicon-fire"></span>
 					<span style="display: none;">轰！</span>
 				</button>
 			</form>
