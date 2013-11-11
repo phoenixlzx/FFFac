@@ -50,6 +50,7 @@
 						<img src="image/fff-header.jpg" alt="FFF" width="600" height="250" style='border-radius: 10px;' />
 					</label>
 					<div id='shortfire'>
+						<label class="sr-only" for="exampleInputEmail2">Put long url</label>
 						<input type="text" class="form-control longurl" id="shorturl" name='shorturl' placeholder="烧！烧！烧！" autofocus />
 					</div>
 				</div>

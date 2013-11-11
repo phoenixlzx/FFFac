@@ -52,32 +52,7 @@ $(document).ready(function() {
 	});
 
 /* Long to Short  special.ver */
-	var fadeshortsp = function() {
-		$('#fireshoutsp span:last').fadeIn("fast");
-	}
-	var fadelongsp = function() {
-		$('#fireshoutsp span:first').fadeIn("fast");
-	}
-	var selectshortsp = function() {
-		$('#shorturlsp').select();
-	}
 
-	$("#fireshoutsp").click(function() {
-		if ($('#fireshoutsp span:last').attr("style") === "display: none;") 
-			{
-				$("#shorturlsp").animate({width: "450px"});
-				$("#fireshoutsp").animate({width: "200px"},'normal',selectshortsp);
-				$('#fireshoutsp span:first').fadeOut("fast", fadeshortsp);
-				$('#shorturlsp').attr('readonly', 'readonly').val('http://fff.ac/firesp').click(selectshortsp);
-				// ajax 
-		} 
-		else {
-			$("#shorturlsp").animate({width: "820px"});
-			$("#fireshoutsp").animate({width: "450px"});
-			$('#fireshoutsp span:last').fadeOut("fast", fadelongsp);
-			$('#shorturlsp').attr('placeholder', 'F！F！F！').removeAttr("readonly").val(null);
-		}
-	});
 
 /* about */
 	$('div#wrap div#about')
@@ -257,16 +232,32 @@ $(document).ready(function() {
 
 /* forget password */
 	var forgotpwready = function() {
-				$('div#forgotpwform div.form-group').fadeOut('fast');
-				$('#forgotpwsuccess').fadeIn('fast',function(){
-					$('div#forgotpwform').animate({height: '70px'},300,function(){
-						$('button#btnforgotpw').animate({height:'60px'},1500,function(){
-								$('div#forgotpwform').animate({height: '0px'},500,function(){
-									window.location = "/login"
-								})
-						});
+		//if success
+		
+			$('div#forgotpwform div.form-group').fadeOut('fast');
+			$('#forgotpwsuccess').fadeIn('fast',function(){
+				$('div#forgotpwform').animate({height: '70px'},300,function(){
+					$('button#btnforgotpw').animate({height:'60px'},1500,function(){
+							$('div#forgotpwform').animate({height: '0px'},500,function(){
+								window.location = "/login"
+							})
 					});
 				});
+			});
+
+		//else fail
+		/*
+			$('div#forgotpwform div.form-group').fadeOut('fast');
+			$('#forgotpwfail').fadeIn('fast',function(){
+				$('div#forgotpwform').animate({height: '70px'},300,function(){
+					$('button#btnforgotpw').animate({height:'60px'},1500,function(){
+							$('div#forgotpwform').animate({height: '0px'},500,function(){
+								window.location = "/forgot-password"
+							})
+					});
+				});
+			});
+		*/
 	}
 
 	$('div#forgotpwform')
