@@ -5,20 +5,20 @@ $(document).ready(function() {
 		'天下有情人终成兄妹',
 		'壮哉我大FFF团',
 		'我们的事业是正义的',
-		'烧死异性恋',
+		'烧死除兄妹外所有异性恋',
 		'燃烧吧&thinsp;!&thinsp;圣战日',
 		'异端审判',
 		'不～可～饶～恕～',
 		'让火焰净化一切叛徒',
-		'死刑',
 		'给予异端者死的制裁',
-		'异端审问，开庭',
+		'异端审问会，开庭',
 		'烈焰中舞动的火花，将赐予邪恶异性交往以天罚',
-		'烧',
 		'圣战不息',
 	];
-	var motdw = motdlist[Math.floor(Math.random()*motdlist.length)];
- 	$('#navmotd').html(motdw + '&thinsp;!&emsp;');
+	var motdnav = motdlist[Math.floor(Math.random()*motdlist.length)];
+	var motdhead = motdlist[Math.floor(Math.random()*motdlist.length)];
+	$('#navmotd').html(motdnav + '&thinsp;!&emsp;');
+	$('#headmotd').html(motdhead);
 /* userinfo */
 	$('*#username').html('example');
 	$('*#email').html('&lt;example@example.com&gt;')
@@ -52,6 +52,43 @@ $(document).ready(function() {
 	});
 
 /* Long to Short  special.ver */
+	//idn means record-id-namber
+		//change record
+		$("button#change-record-idn").click(function(){
+			var idrecord_idn = $('#record-id-idn').text()
+			var longrecord_idn = $('#record-long-idn').text()
+			var shortrecord_idn = $('#record-short-idn').text()
+			$("td#record-id-idn")
+				.attr('style','padding:4px')
+				.wrapInner("<input type='text' id='record-id-change-idn' class='form-control input-sm' name='record-id-change-idn' value=" + idrecord_idn + " />");
+			$("td#record-long-idn")
+				.attr('style','padding:4px')
+				.wrapInner("<input type='text' id='record-long-change-idn' class='form-control input-sm' name='record-long-change-idn' value=" + longrecord_idn + " />");
+			$("td#record-short-idn")
+				.attr('style','padding:4px')
+				.wrapInner("<input type='text' id='record-short-change-idn' class='form-control input-sm' name='record-short-change-idn' value=" + shortrecord_idn + " />");
+			$(this).fadeOut(1);
+			$('button#do-change-record-idn').fadeIn(1);
+		});
+		$("button#do-change-record-idn").click(function(){
+			var record_id_change_idn = $('#record-id-change-idn').val()
+			var record_long_change_idn = $('#record-long-change-idn').val()
+			var record_short_change_idn = $('#record-short-change-idn').val()
+			//ajax
+			$("input#record-id-change-idn").replaceWith(record_id_change_idn);
+			$("input#record-long-change-idn").replaceWith(record_long_change_idn);
+			$("input#record-short-change-idn").replaceWith(record_short_change_idn);
+			$("td#record-id-idn").removeAttr('style');
+			$("td#record-long-idn").removeAttr('style');
+			$("td#record-short-idn").removeAttr('style');
+			$(this).fadeOut(1);
+			$('button#change-record-idn').fadeIn(1);
+		});
+		// delete record
+		$("button#fire-record-idn").click(function(){
+			$('tr#record-row-idn').detach().remove().empty();
+		});
+		//new record
 
 
 /* about */
@@ -89,6 +126,7 @@ $(document).ready(function() {
 		$('#fireburn').fadeIn(500).animate({color:"#FF0000"},300);
 		$("#contact").animate({height: "0px"},600);
 		$('#fireburn').fadeOut(120);
+		//ajax
 		$('#contact').fadeOut(400,sendready);
 	});
 	//send success
@@ -130,7 +168,9 @@ $(document).ready(function() {
 		.animate({height: '100%'},"fast");
 	//account change
 	$('#accountchange').click(function() {
-		$('div.accountform').animate({height: "0px"},600).fadeOut(1,accountchangeready);
+		$('div.accountform').animate({height: "0px"},600);
+		//ajax
+		$('div.accountform').fadeOut(1,accountchangeready);
 	});
 	//back account change
 	$('#successbackaccount').click(function() {
@@ -182,6 +222,7 @@ $(document).ready(function() {
 	//login go
 	$('button#btnsignin').click(function() {
 		$(this).fadeOut('fast');
+		//ajax
 		$('div#loginform').animate({height: '0px'},400,signinready);
 	});
 
@@ -227,6 +268,7 @@ $(document).ready(function() {
 	//login go
 	$('button#btnsignup').click(function() {
 		$(this).fadeOut('fast');
+		//ajax
 		$('div#signupform').animate({height: '0px'},400,signupready);
 	});
 
@@ -267,6 +309,7 @@ $(document).ready(function() {
 	//login go
 	$('button#btnforgotpw').click(function() {
 		$(this).fadeOut('fast');
+		//ajax
 		$('div#forgotpwform').animate({height: '0px'},400,forgotpwready);
 	});
 
