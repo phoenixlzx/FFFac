@@ -13,10 +13,7 @@ $ErrorPage="./404.html";
 function select($link,$id){
 	$query="select * from url where id='$id'";
 	if($result=mysqli_query($link,$query))
-		if($row = mysqli_fetch_row($result)){
-			mysqli_free_result($result);
-			return $row;
-		}
+		if($row = mysqli_fetch_row($result))return $row;
 	return false;
 }
 

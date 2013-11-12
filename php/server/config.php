@@ -1,10 +1,11 @@
 <?
-/********************************
- * This is Config and Mysql File*
- *******************************/
+/******************************* *
+ * This is Config and Mysql File *
+ * Also include log function     *
+ ********************************/
 
 //Global params
-$safecode		="ncapoewijnrf;kcamkso;fn2p3rupwjdco;iasdhfopiasdjf";//encryption cookies
+$GLOBALS['safecode']="ncapoewijnrf;kcamkso;fn2p3rupwjdco;iasdhfopiasdjf";//encryption cookies
 $mysql_host		="127.0.0.1";
 $mysql_username	="short";
 $mysql_passwd	="PFuh4Er98PtXH3sp";
@@ -26,6 +27,8 @@ if(!mysqli_set_charset($link,"utf8")){
 	if($GLOBALS['debugmode']) echo "Can't Set MySQL UTF8.".mysqli_error($link);
 	die("MySQL Charset Error");
 }
+
+
 ?>
 
 
