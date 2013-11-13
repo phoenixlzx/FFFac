@@ -9,20 +9,20 @@ header('Content-type: text/json');
 
 ////Check if username is legal////
 function checkusernamelegal($string){
-	return preg_match ("^([a-zA-Z])([a-zA-Z0-9_]){2,9}$",$string);
+	return preg_match ("^([a-zA-Z])([a-zA-Z0-9_]){2,20}$",$string);
 }
 
 ////Login Function////
 function checkpasswd($link,$username,$passwd){
-	$row=mysqli_fetch_row(mysqli_query($link,"select * from user where name='$username';"));
+	$row=mysqli_fetch_row(mysqli_query($link,"select * from user where username='$username';"));
 	if($row==false)return 201;//No User found
-	if($passwd!==$row['passwd'])return 202;//Password Error
-	if($row['level']===99)return 203;//User was banned
+	if($passwd!==$row[2])return 202;//Password Error
+	if($row[4]==99)return 203;//User was banned
 	$cookie=substr(MD5($username.$GLOBALS['safecode'].microtime()),16);//generate cookie;
 	$expiretime=time()+3600;
-	if($post['ltl']==true)$expiretime=time()+3600*24*7;
+	if($_POST['ltl']==true)$expiretime=time()+3600*24*7;
 	setcookie('cookie',$cookie,$expiretime,"/");
-	$_SESSION[$cookie]=[$id,$username,$row['level']];
+	$_SESSION[$cookie]=[$row[2],$username,$row[4]];
 	return $row;
 }
 function login($link,$post){
@@ -30,9 +30,10 @@ function login($link,$post){
 	$passwd=$post['passwd'];//need MD5 secure at client. Only need top 16 characters.
 	$row=checkpasswd($link,$username,$passwd);
 	if(is_array($row)){
-		$arr = array('code'=>101,'id'=>$row['id'],'level'=>$row['level']);
-		$log=$username."	login at	"$HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'];
-		mysqli_query($link,"insert into 'log'('time','function','action')values(current_timestamp,'login','$log');";//log 
+		$arr = array('code'=>101,'id'=>$row[1],'level'=>$row[4]);
+		$log= $username." login at[".$_SERVER['REMOTE_ADDR']."]use ".$_SERVER['HTTP_USER_AGENT'];
+		mysqli_query($link,"insert into log values(current_timestamp,'$row[1]','login','$log');");//log 
+		
 		echo json_encode($arr);
 		exit(1);
 	}
@@ -40,10 +41,13 @@ function login($link,$post){
 	exit($row);
 }
 
+function logout(){
+	if(isset($_SESSION[$_COOKIE['cookie']]));
+}
+
 
 if($_GET['function']==="login"){
 	login($link,$_POST);
-	exit();
 }
 
 
