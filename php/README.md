@@ -29,20 +29,35 @@ This is a ReadMe File.
 	POST: username: abc
 		  passwd:	123
 
-	RETURN: code: 101(OK) or error code 
+	RETURN: code: xxx 
 			id:	Userid
 			level: User Level (1: normal user 10: admin user)
 	
-	ERRORCODE:	101 OK
-				201 User Not Found
-				202 Password Error
-				203 User Was Blocked
+	CODE:	101 201 202 203 
 
+2. logout
+
+	login.php?function=logout
+
+	POST: NULL
+
+	RETURN:	code:	xxx
+
+	CODE:	101
 
 ####shorturl.php
 
+1. addurl
+	
+	shorturl.php?function=addurl
+	
+	POST: url : http://a.com
 
+	RETURN:	code: xxx
+			id:	urlid
+			url:	url
 
+	CODE:	101 301 402
 ###Code:
 ####Every Thing is OK:
 				101:OK
@@ -53,4 +68,5 @@ This is a ReadMe File.
 ####Server About
 				301:SQL Error. Please connect admin.
 ####Grammar About
-				401:
+				401:username format error
+				402:url format error
