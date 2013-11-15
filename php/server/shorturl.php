@@ -7,17 +7,27 @@ session_start();
 header('Content-type: text/json');
 
 ////Check If Login////
-function checklogin(){
+/*
+function checklogin($link){
 	if(isset($_SESSION[$_COOKIE['cookie']]))
 		return $_SESSION[$_COOKIE['cookie']];//login
+	$cookie=$_COOKIE['cookie'];
+	if($row=mysqli_fetch_row(mysqli_query($link,"select * from cookie where cookie='$cookie';")))
+		if(time()<strtotime($row[1])){
+			$id=$row[2];
+			if(!$user=mysqli_fetch_row(mysqli_query($link,"select * from user where id='$id';")))return 0;
+			$_SESSION[$cookie]=[$row[2],$user[0],$user[4]];
+			return $_SESSION[$_COOKIE['cookie']];
+		}
 	return 0;//no login
 }
+ */
 
 ////add url to database////
 function addurl($link,$url,$id,$userid=1,$type=1,$text=""){
 	if(mysqli_query($link,"insert into url values ( '$id','$url','$type','$text','$userid');")){
 		$log="setup a short url ".$id;
-		mysqli_query($link,"insert into log values(current_timestamp,'$id','addurl','$log');");
+		mysqli_query($link,"insert into log values(current_timestamp,'$userid','addurl','$log');");
 		$arr=array('code'=>101,'id'=>$id,'url'=>$url);
 		echo json_encode($arr);
 		exit(1);
@@ -40,7 +50,7 @@ function checkurl($string){
 }	
 
 if($_GET['function']==="addurl"){
-	$userid=is_array(checklogin())?checklogin()[1]:1;
+	$userid=is_array(checklogin($link))?checklogin($link)[0]:1;
 	$id=generateid($link,8);
 	if(checkurl($_POST['url'])==true)addurl($link,$_POST['url'],$id,$userid);
 	else echo json_encode(array('code'=>402));

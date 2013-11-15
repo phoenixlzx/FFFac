@@ -10,7 +10,7 @@ This is a ReadMe File.
 ###MySQL datebase:
 
 ####Table user:
-		|username <varchar64>	|id <int>	|passwd <varchar64>	|Email <varchar100>	|level <tinyint>	|
+		|username <varchar64>	|id <int>	|passwd <varchar64>	|email <varchar100>	|level <tinyint>	|emailvalid <tinyint>	|
 ####Table url:
 		|id <char12>	|url <text>	|type <tinyint>	|text <TEXT>	|userid	<int>	|
 ####Table log:
@@ -43,7 +43,28 @@ This is a ReadMe File.
 
 	RETURN:	code:	xxx
 
-	CODE:	101
+	CODE:	101 204
+
+3. checklogin
+	
+	login.php?function=checklogin
+
+	POST: NULL
+
+	RETURN:	code:	xxx
+			username:	abc
+			userid:	123
+			level:	123
+
+	CODE: 101 204
+
+4. signup
+
+5. resetpasswd
+
+6. validemail
+
+7. checkpasswd
 
 ####shorturl.php
 
@@ -58,6 +79,32 @@ This is a ReadMe File.
 			url:	url
 
 	CODE:	101 301 402
+
+2. addspecialurl
+
+3. listurl
+
+4. deleteurl
+
+5. editurl
+
+####quote.php
+
+1. addquote
+
+2. listquote
+
+3. deletequote
+
+####admin.php
+
+1. adduser
+
+2. edituser
+
+3. deleteuser
+
+
 ###Code:
 ####Every Thing is OK:
 				101:OK
@@ -65,6 +112,7 @@ This is a ReadMe File.
 				201:User Not Found
 				202:Password Error
 				203:User Was Blocked
+				204:User Didn't Login
 ####Server About
 				301:SQL Error. Please connect admin.
 ####Grammar About

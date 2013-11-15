@@ -28,6 +28,21 @@ if(!mysqli_set_charset($link,"utf8")){
 	die("MySQL Charset Error");
 }
 
+////Check If Login////
+function checklogin($link){
+	if(isset($_SESSION[$_COOKIE['cookie']]))
+		return $_SESSION[$_COOKIE['cookie']];//login
+	$cookie=$_COOKIE['cookie'];
+	if($row=mysqli_fetch_row(mysqli_query($link,"select * from cookie where cookie='$cookie';")))
+		if(time()<strtotime($row[1])){
+			$id=$row[2];
+			if(!$user=mysqli_fetch_row(mysqli_query($link,"select * from user where id='$id';")))return 0;
+			$_SESSION[$cookie]=[$row[2],$user[0],$user[4]];
+			return $_SESSION[$_COOKIE['cookie']];
+		}   
+	return 0;//no login
+}
+
 
 ?>
 
