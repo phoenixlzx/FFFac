@@ -2,6 +2,7 @@
 /********************************
  * This is the login file       *
  ********************************/
+
 include("./config.php");
 session_start();
 header('Content-type: text/json');
@@ -35,11 +36,12 @@ function login($link,$post){
 		$arr = array('code'=>101,'id'=>$row[1],'level'=>$row[4]);
 		$log= $username." login at[".$_SERVER['REMOTE_ADDR']."]use ".$_SERVER['HTTP_USER_AGENT'];
 		mysqli_query($link,"insert into log values(current_timestamp,'$row[1]','login','$log');");//log 
-		
 		echo json_encode($arr);
+		if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 		exit(1);
 	}
 	echo json_encode(array('code'=>$row));
+	if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 	exit($row);
 }
 
@@ -47,18 +49,24 @@ function logout($link){
 	$user=checklogin($link);
 	if($user==0){
 		echo json_encode(array("code"=>204));
+		if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 		exit(204);
 	}
 	else{
 		if($cookie=$_COOKIE['cookie']){
-			mysqli_query($link,"delete * from cookie where cookie='$cookie';");
-			setcookie('cookie',"123",$time()-3600*24*365,"/");
+			echo $cookie;
+			if(mysqli_query($link,"delete from cookie where cookie='$cookie';"))echo "ok";
+			$log= $user[1]." logout with cookie ".$cookie;
+			mysqli_query($link,"insert into log values(current_timestamp,'$user[0]','login','$log');");//log 
+			setcookie('cookie',"123",time()-3600*24*365,"/");
 			session_unset();
 			session_destroy();
-			echo json_encode(array("code"=>101);
+			echo json_encode(array("code"=>101));
+			if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 			exit(1);
 		}
 		echo json_encode(array("code"=>204));
+		if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 		exit(204);
 	}
 }
@@ -72,10 +80,12 @@ if($_GET['function']==="checklogin"){
 	$user=checklogin($link);
 	if($user==0){
 		echo json_encode(array("code"=>204));
+		if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 		exit(204);
 	}
 	else {
 		echo json_encode(array("code"=>101,"username"=>$user[1],"id"=>$user[0],"level"=>$user[2]));
+		if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 		exit(1);
 	}
 }

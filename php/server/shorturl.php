@@ -30,9 +30,11 @@ function addurl($link,$url,$id,$userid=1,$type=1,$text=""){
 		mysqli_query($link,"insert into log values(current_timestamp,'$userid','addurl','$log');");
 		$arr=array('code'=>101,'id'=>$id,'url'=>$url);
 		echo json_encode($arr);
+		if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 		exit(1);
 	}
 	echo json_encode(array('code'=>301));
+	if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 	exit(301);
 }
 ////generate the id////
@@ -54,6 +56,7 @@ if($_GET['function']==="addurl"){
 	$id=generateid($link,8);
 	if(checkurl($_POST['url'])==true)addurl($link,$_POST['url'],$id,$userid);
 	else echo json_encode(array('code'=>402));
+	if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 	exit(402);
 }
 

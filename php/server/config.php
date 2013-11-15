@@ -11,6 +11,7 @@ $mysql_username	="short";
 $mysql_passwd	="PFuh4Er98PtXH3sp";
 $mysql_datebase	="short";
 $GLOBALS['debugmode']=true;
+$GLOBALS['time']=microtime();
 
 //Mysql
 $link= mysqli_connect(
