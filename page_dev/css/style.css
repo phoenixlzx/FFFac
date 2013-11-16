@@ -88,6 +88,23 @@ div#wrap div#special{
 	overflow: hidden;
 }
 
+/* userlist */
+.usertd-id {
+	max-width: 200px;
+	min-width: 200px;
+	overflow: hidden;
+}
+.usertd-mail {
+	max-width: 300px;
+	min-width: 300px;
+	overflow: hidden;
+}
+.usertd-permissions {
+	max-width: 100px;
+	min-width: 100px;
+	overflow: hidden;
+}
+
 /* About page */
 #about {
 	display: none;

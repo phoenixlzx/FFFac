@@ -55,47 +55,86 @@ $(document).ready(function() {
 	//idn means record-id-namber
 		//change record
 		$("button#change-record-idn").click(function(){
-			var idrecord_idn = $('#record-id-idn').text()
 			var longrecord_idn = $('#record-long-idn').text()
 			var shortrecord_idn = $('#record-short-idn').text()
-			$("td#record-id-idn")
-				.attr('style','padding:4px')
-				.wrapInner("<input type='text' id='record-id-change-idn' class='form-control input-sm' name='record-id-change-idn' value=" + idrecord_idn + " />");
 			$("td#record-long-idn")
 				.attr('style','padding:4px')
 				.wrapInner("<input type='text' id='record-long-change-idn' class='form-control input-sm' name='record-long-change-idn' value=" + longrecord_idn + " />");
 			$("td#record-short-idn")
 				.attr('style','padding:4px')
 				.wrapInner("<input type='text' id='record-short-change-idn' class='form-control input-sm' name='record-short-change-idn' value=" + shortrecord_idn + " />");
-			$(this).fadeOut(1);
-			$('button#do-change-record-idn').fadeIn(1);
+			$(this).fadeOut(10,function(){
+				$('button#do-change-record-idn').fadeIn(10);
+			});
 		});
 		$("button#do-change-record-idn").click(function(){
-			var record_id_change_idn = $('#record-id-change-idn').val()
 			var record_long_change_idn = $('#record-long-change-idn').val()
 			var record_short_change_idn = $('#record-short-change-idn').val()
 			//ajax
-			$("input#record-id-change-idn").replaceWith(record_id_change_idn);
 			$("input#record-long-change-idn").replaceWith(record_long_change_idn);
 			$("input#record-short-change-idn").replaceWith(record_short_change_idn);
-			$("td#record-id-idn").removeAttr('style');
 			$("td#record-long-idn").removeAttr('style');
 			$("td#record-short-idn").removeAttr('style');
-			$(this).fadeOut(1);
-			$('button#change-record-idn').fadeIn(1);
+			$(this).fadeOut(10,function(){
+				$('button#change-record-idn').fadeIn(10);
+			});
 		});
 		// delete record
 		$("button#fire-record-idn").click(function(){
+			//ajax
 			$('tr#record-row-idn').detach().remove().empty();
 		});
 		//new record
+			// orz
 
+/* userlist */
+	//idn means user-id-namber
+		//change record
+		$("button#change-user-idn").click(function(){
+			var iduser_idn = $('#user-id-idn').text()
+			var mailuser_idn = $('#user-mail-idn').text()
+			var permissionsuser_idn = $('#user-permissions-idn').text()
+			$("td#user-id-idn")
+				.attr('style','padding:4px')
+				.wrapInner("<input type='text' id='user-id-change-idn' class='form-control input-sm' name='user-id-change-idn' value=" + iduser_idn + " />");
+			$("td#user-mail-idn")
+				.attr('style','padding:4px')
+				.wrapInner("<input type='text' id='user-mail-change-idn' class='form-control input-sm' name='user-mail-change-idn' value=" + mailuser_idn + " />");
+			$("td#user-permissions-idn")
+				.attr('style','padding:4px')
+				.wrapInner("<input type='text' id='user-permissions-change-idn' class='form-control input-sm' name='user-permissions-change-idn' value=" + permissionsuser_idn + " />");
+			$(this).fadeOut(10,function(){
+				$('button#do-change-user-idn').fadeIn(10);
+			});
+		});
+		$("button#do-change-user-idn").click(function(){
+			var user_id_change_idn = $('#user-id-change-idn').val()
+			var user_mail_change_idn = $('#user-mail-change-idn').val()
+			var user_permissions_change_idn = $('#user-permissions-change-idn').val()
+			//ajax
+			$("input#user-id-change-idn").replaceWith(user_id_change_idn);
+			$("input#user-mail-change-idn").replaceWith(user_mail_change_idn);
+			$("input#user-permissions-change-idn").replaceWith(user_permissions_change_idn);
+			$("td#user-id-idn").removeAttr('style');
+			$("td#user-mail-idn").removeAttr('style');
+			$("td#user-permissions-idn").removeAttr('style');
+			$(this).fadeOut(10,function(){
+				$('button#change-user-idn').fadeIn(10);
+			});
+		});
+		// delete record
+		$("button#fire-user-idn").click(function(){
+			//ajax
+			$('tr#user-row-idn').detach().remove().empty();
+		});
+		//new record
+			// orz
 
 /* about */
 	$('div#wrap div#about')
 		.animate({height: '155px'},"fast")
 		.fadeIn(600)
-		.animate({height: '720px'},600)
+		.animate({height: '710px'},600)
 		.animate({height: '100%'},"fast");
 
 /* Fire message */
@@ -103,14 +142,14 @@ $(document).ready(function() {
 		$(this)
 			.animate({height: '0px'},1)
 			.fadeIn('fast')
-			.animate({height: '500px'},500)
+			.animate({height: '490px'},600)
 			.animate({height: '100%'},"fast");
 	}
 	var sendready = function() {
 			//if success
 				$('div#sendsuccess').animate({height: '0px'},1,sendres);
 			//else fail
-				$('div#sendfail').animate({height: '0px'},1,sendres);
+				//$('div#sendfail').animate({height: '0px'},1,sendres);
 	}
 	var mfirea = function() {
 		$('#contact')
@@ -144,14 +183,14 @@ $(document).ready(function() {
 	var accountchangeres = function() {
 		$(this)
 			.fadeIn('fast')
-			.animate({height: '500px'},500)
+			.animate({height: '460px'},600)
 			.animate({height: '100%'},"fast");
 	}
 	var accountchangeready = function() {
 			//if success
 				$('div#accountchangesuccess').animate({height: '0px'},1,accountchangeres);
 			//else fail
-				$('div#accountchangefail').animate({height: '0px'},1,accountchangeres);
+				//$('div#accountchangefail').animate({height: '0px'},1,accountchangeres);
 	}
 	var backaccount = function() {
 		$('div.accountform')

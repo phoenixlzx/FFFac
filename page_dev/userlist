@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+	<title>FFF传送</title>
+	<meta name="keywords" content="FFF传送" />
+	<meta charset="utf-8" />
+	<link rel="icon" 	   href="image/fff-icon-001.png" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="/javascripts/html5shiv.js"></script>
+	<script src="/javascripts/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body  background="image/a.png">
+<!-- nav bar -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><span class="glyphicon glyphicon-fire firefiresmall"></span>&thinsp;FFF传送</a>
+			</div>
+
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/admin">特殊传送</a></li>
+					<li><a href="/urllist">管理短域名</a></li>
+					<li><a href="/userlist">管理用户</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<small style='color: #F00' id='navmotd'>烧&thinsp;!&emsp;</small>
+					<a href='/signup' class="btn btn-warning">加入传送部</a>
+					<a href='/login' class="btn btn-success">核对暗号</a>
+					<a href='/account' class="btn btn-success">FFF团卡</a>
+					<button type="submit" class="btn btn-primary">贤者模式</button>
+				</form>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+	
+<!-- main -->
+	<div class="container" id='wrap'>
+		<div id="special">
+			<h1 style="text-align: center">
+				<span class='FFFshort'>FFF特殊传送</span><br />
+			</h1>
+			<hr style='box-shadow: 0px -10px 40px 5px rgba(255,70,0,0.35);' />
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class='user-id'>用户名称</th>
+						<th class="user-mail">用户邮箱</th>
+						<th class="user-permissions">用户权限</th>
+						<th>有罪？</th>
+						<th>异端！</th>
+					</tr>
+				</thead>
+				<tbody>
+			<!-- records start -->
+				<!-- idn means user-id-namber -->
+					<tr id="user-row-idn">
+						<td class='usertd-id' id='user-id-idn'>fffname</td>
+						<td class='usertd-mail' id='user-mail-idn'>ffflong</td>
+						<td class='usertd-permissions' id='user-permissions-idn'>fffshort</td>
+						<td>
+							<button type="submit" class="btn btn-info btn-xs" id='change-user-idn'>更改</button>
+							<button type="submit" class="btn btn-success btn-xs" id='do-change-user-idn' style='display: none'>确认</button>
+						</td>
+						<td>
+							<button type="submit" class="btn btn-danger btn-xs" id='fire-user-idn'>死刑！</button>
+						</td>
+					</tr>
+			<!-- records end -->
+				</tbody>
+			</table>
+			<hr style='box-shadow: 0px 10px 40px 5px rgba(255,70,0,0.35);' />
+			<button type="submit" class="btn btn-default" id='new-user'>新增用户</button>
+		</div>
+	</div><!-- /.container -->
+	
+<!-- footer -->
+	<div id="footer">
+		<div class="container">
+			<p class="text-muted credit">
+				2013&emsp;FFF传送&emsp;
+				<span class="glyphicon glyphicon-fire firefiresmall"></span>
+				&emsp;我们的事业是正义的！
+			</p>
+		</div>
+	</div>
+
+<!--Bootstrap-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/functions.js"></script>
+</body>
+</html>
