@@ -13,13 +13,11 @@ $(document).ready(function() {
 	}
 
 	$("#fireshout").click(function() {
-		if ($('#fireshout span:last').attr("style") === "display: none;") 
-			{
+		if ($('#fireshout span:last').attr("style") === "display: none;") {
 				$("#shorturl").animate({width: "450px"});
 				$("#fireshout").animate({width: "200px"},'normal',selectshort);
 				$('#fireshout span:first').fadeOut("fast", fadeshort);
-				$('#shorturl').attr('readonly', 'readonly').val('http://fff.ac/fire').click(selectshort);
-				// ajax 
+
 		} 
 		else {
 			$("#shorturl").animate({width: "820px"});

@@ -10,10 +10,13 @@
         "ejs": "*",
         "less-middleware": "*",
         "mongodb": "*",
+        "connect-mongo": "*",
         "connect-flash": "*",
         "validator": "*",
         "i18n": "*",
         "nodemailer": "*",
-        "hat": "*"
+        "hat": "*",
+        "async": "*",
+        "randomstring": "*"
     }
 }

@@ -13,13 +13,14 @@ var express = require('express')
     , i18n = require('i18n');
 
 i18n.configure({
-    locales:['zh-cn', 'zh-tw', 'en-us'],
-    // defaultLocale: config.language,
+    locales:['zh-cn'],
+    defaultLocale: config.language,
     directory: './i18n',
     updateFiles: false,
     indent: "\t",
     extension: '.json'
 });
+
 
 var app = express();
 
@@ -34,7 +35,7 @@ app.use(express.methodOverride());
 app.use(express.cookieParser(config.cookieSecret));
 app.use(express.session({
     secret: config.cookieSecret,
-    cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+    cookie: {maxAge: 1000 * 60 * 60 * 24 * 30}, //30 days
     store: new MongoStore({
         db: config.mongodb,
         clear_interval: 3600
@@ -51,12 +52,12 @@ app.use(require('less-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use(function(req, res) {
-    req.flash('error', res.__('404'));
+    req.flash('error', '404');
     res.status(404);
     res.render('404', {
         siteName: config.siteName,
-        siteTagline: config.siteTagline,
         title: res.__('404') + ' - ' + config.siteName,
         allowReg: config.allowReg,
         user: req.session.user,
@@ -64,6 +65,7 @@ app.use(function(req, res) {
         error: req.flash('error').toString()
     });
 });
+
 
 // development only
 if ('development' == app.get('env')) {
