@@ -59,6 +59,19 @@ This is a ReadMe File.
 	CODE: 101 204
 
 4. signup
+	
+	login.php?function=signup
+
+	POST:	username:	abc
+			passwd:	xxx
+			email:	abc@efd.com
+
+	RETURN:	code:	xxx
+			userid:	123
+			username:	abc
+			email:	abc@efd.com
+
+	CODE: 101 205 206 207 301 401 403
 
 5. resetpasswd
 
@@ -113,8 +126,12 @@ This is a ReadMe File.
 				202:Password Error
 				203:User Was Blocked
 				204:User Didn't Login
+				205:Signup Disallow by admin
+				206:Username is in use
+				207:Email is in use
 ####Server About
 				301:SQL Error. Please connect admin.
 ####Grammar About
 				401:username format error
 				402:url format error
+				403:email format error

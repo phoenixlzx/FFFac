@@ -66,7 +66,7 @@ if($result[2]==0){
 	<title>FFF传送中↑↗→↘↓↙←↖</title>
 	<meta name="keywords" content="FFF传送" />
 	<meta charset="utf-8" />
-	<meta http-equiv=\"refresh\" content="3;url=<?echo $result[1];?>">
+	<meta http-equiv="refresh" content="3;url=<?echo $result[1];?>">
 	<link rel="icon"       href="image/fff-icon-001.png" />
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
@@ -79,7 +79,7 @@ if($result[2]==0){
 			<br>
 			<br>
 			<br>
-			<i><? echo showquote($link,$result);?></i>
+			<h4><B><? echo showquote($link,$result);?></B></h4>
 		</div>
 	</div>
 </body>
