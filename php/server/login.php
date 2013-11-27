@@ -13,20 +13,26 @@ function checkusernamelegal($string){
 
 ////Login Function////
 function checkpasswd($link,$username,$passwd){
-	$row=mysqli_fetch_row(mysqli_query($link,"select * from user where username='$username';"));
-	if($row==false)return 201;//No User found
-	if($passwd!==$row[2])return 202;//Password Error
-	if($row[4]==99)return 203;//User was banned
-	$cookie=substr(MD5($username.$GLOBALS['safecode'].microtime()),16);//generate cookie;
-	$expiretime=time()+3600;
-	if($_POST['ltl']==true){
-		$expiretime=time()+3600*24*7;
-		$date=date("Y-m-d",$expiretime);
-		mysqli_query($link,"insert into cookie values('$cookie','$date','$row[1]');");
+	if($stmt=mysqli_prepare($link,"select * from user where username=?")){
+		mysqli_stmt_bind_param($stmt,"s",$username);
+		mysqli_stmt_execute($stmt);
+		$row=mysqli_fetch_row(mysqli_stmt_get_result($stmt));
+	//$row=mysqli_fetch_row(mysqli_query($link,"select * from user where username='$username';"));
+		if($row==false)return 201;//No User found
+		if($passwd!==$row[2])return 202;//Password Error
+		if($row[4]==99)return 203;//User was banned
+		$cookie=substr(MD5($username.$GLOBALS['safecode'].microtime()),16);//generate cookie;
+		$expiretime=time()+3600;
+		if($_POST['ltl']==true){
+			$expiretime=time()+3600*24*7;
+			$date=date("Y-m-d",$expiretime);
+			mysqli_query($link,"insert into cookie values('$cookie','$date','$row[1]');");
+		}
+		setcookie('cookie',$cookie,$expiretime,"/");
+		$_SESSION[$cookie]=[$row[1],$username,$row[4]];
+		return $row;
 	}
-	setcookie('cookie',$cookie,$expiretime,"/");
-	$_SESSION[$cookie]=[$row[1],$username,$row[4]];
-	return $row;
+	return 301;
 }
 function login($link,$post){
 	$username=$post['username'];
@@ -109,7 +115,10 @@ function signup($link){
 	$username=$_POST['username'];
 	$passwd=$_POST['passwd'];
 	$email=$_POST['email'];
-	if(mysqli_query($link,"insert into user values ('$username','','$passwd','$email',1,0);")){
+	if($stmt=mysqli_prepare($link,"insert into user values (?,'',?,?,1,0)")){
+		mysqli_stmt_bind_param($stmt,"sss",$username,$passwd,$email);
+		mysqli_stmt_execute($stmt);
+	//if(mysqli_query($link,"insert into user values ('$username','','$passwd','$email',1,0);")){
 		$log="user signup ".$username."at[".$_SERVER['REMOTE_ADDR']."]use ".$_SERVER['HTTP_USER_AGENT'];
 		mysqli_query($link,"insert into log values(current_timestamp,'0','adduser','$log');");
 		if($row=mysqli_fetch_row(mysqli_query($link,"select * from user where username='$username';"))){
@@ -132,7 +141,7 @@ function sendvalidemail($link,$userid,$email){
 	if(mysqli_query($link,"insert into code values ('$code',1,'$date','$userid');")){
 		$to=$email;
 		$subject="FFFAC 的验证邮件";
-		$message="您好：\n 您收到这封邮件的原因是因为你注册成为了FFF.ac成员。请点击以下连接以验证邮箱：\n http://fff.ac/login.php?function=checkmailcode&code=".$code"\n 感谢您的注册，如果这不是本人操作的，请忽略这封邮件。";
+		$message="您好：\n 您收到这封邮件的原因是因为你注册成为了FFF.ac成员。请点击以下连接以验证邮箱：\n http://fff.ac/login.php?function=checkmailcode&code=".$code."\n 感谢您的注册，如果这不是本人操作的，请忽略这封邮件。";
 		$headers="From: welcome@fff.ac";
 		if(mail($to,$subject,$message,$headers)){
 			return true;
@@ -143,22 +152,32 @@ function sendvalidemail($link,$userid,$email){
 
 function checkmailcode($link){
 	$code=$_GET['code'];
-	if($row=mysqli_fetch_row(mysqli_query($link,"select * from code where code='$code';"))){
-		if(time()<strtotime($row[2])){
-			if($row[1]==1){
-				$id=$row[3];
-				if($mysqli_query($link,"update user set emailvalid='1' where id='$id';"))return true;
-			}
+	if($stmt=mysqli_prepare($link,"select * from code where code =?")){
+		mysqli_stmt_bind_param($stmt,'s',$code);
+		mysqli_stmt_execute($stmt);
+		if($row=mysqli_fetch_row(mysqli_stmt_get_result($stmt))){
+	//if($row=mysqli_fetch_row(mysqli_query($link,"select * from code where code='$code';"))){
+			if(time()<strtotime($row[2])){
+				if($row[1]==1){
+					$id=$row[3];
+					if($mysqli_query($link,"update user set emailvalid='1' where id='$id';"))return true;
+				}
+			}	
 		}
 	}
-	return false;
+	return false
 }
 
 function requirvalidemail($link){
 	$user=checklogin($link);
 	if(is_array($user)){
-		$row
+		$row=0;
+	}
+}
 
+
+
+////main function
 if($_GET['function']==="login"){
 	login($link,$_POST);
 	exit(1);

@@ -11,9 +11,16 @@ $ErrorPage="./404.html";
 
 ////Get Result From SQL////
 function select($link,$id){
-	$query="select * from url where id='$id'";
-	if($result=mysqli_query($link,$query))
-		if($row = mysqli_fetch_row($result))return $row;
+	if($stmt=mysqli_prepare($link,"SELECT * from url where id=?")){
+		mysqli_stmt_bind_param($stmt,"s",$id);
+		mysqli_stmt_execute($stmt);
+		if($row=mysqli_fetch_row(mysqli_stmt_get_result($stmt))){
+			return $row;
+		}
+	}
+	//$query="select * from url where id='$id'";
+	//if($result=mysqli_query($link,$query))
+	//	if($row = mysqli_fetch_row($result))return $row;
 	return false;
 }
 
