@@ -441,6 +441,28 @@ module.exports = function(app) {
             }
         });
     });
+
+    app.get('/:shorturi', function(req, res) {
+        Uri.getURI(req.params.shorturi, function(err, doc) {
+            // console.log(doc);
+            if (err) {
+                console.log(err.message);
+            }
+            if (!doc) {
+                // TODO Uri 404 Page
+                res.redirect('/');
+            }
+            res.render('jump',{
+                title: res.__('JUMPING') + ' - ' + config.siteName,
+                siteName: config.siteName,
+                allowReg: config.allowReg,
+                user: req.session.user,
+                longurl: doc.origin,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    });
 }
 
 // Session functions
