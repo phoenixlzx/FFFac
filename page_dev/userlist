@@ -38,7 +38,7 @@
 					<a href='/signup' class="btn btn-warning">加入传送部</a>
 					<a href='/login' class="btn btn-success">核对暗号</a>
 					<a href='/account' class="btn btn-success">FFF团卡</a>
-					<button type="submit" class="btn btn-primary">贤者模式</button>
+					<a href='/logout' class="btn btn-primary">贤者模式</a>
 				</form>
 			</div><!--/.nav-collapse -->
 		</div>

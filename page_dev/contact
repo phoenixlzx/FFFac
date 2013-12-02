@@ -36,7 +36,7 @@
 				<form class="navbar-form navbar-right">
 					<small style='color: #F00' id='navmotd'>烧&thinsp;!&emsp;</small>
 					<a href='/account' class="btn btn-success">FFF团卡</a>
-					<button type="submit" class="btn btn-primary">贤者模式</button>
+					<a href='/logout' class="btn btn-primary">贤者模式</a>
 				</form>
 			</div><!--/.nav-collapse -->
 		</div>
