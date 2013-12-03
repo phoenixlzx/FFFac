@@ -1,1 +1,23 @@
-module.exports = {}
+module.exports = {
+    // Database settings
+    mongodb: 'fffac',
+    mongoserver: 'mongodb://127.0.0.1:27017/fffac',
+
+    // cookie
+    cookieSecret: 'CookieSecretHere',
+
+    // site settings
+    siteName: 'FFFac',
+    allowReg: true,
+    url: '127.0.0.1:3000',
+    ssl: false,
+    language: 'zh-cn',
+    urlen: 6,
+
+    // Mail configuration
+    adminMail: 'dnsadmin@example.com',
+    serviceMailSMTP: 'Gmail',
+    serviceMailSender: 'service@example.com',
+    serviceMailUser: 'gmail.user@gmail.com',
+    serviceMailPass: 'gmail.pass.here'
+}
