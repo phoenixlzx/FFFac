@@ -16,10 +16,10 @@
 	<hr style='box-shadow: 0px -10px 40px 5px rgba(255,70,0,0.35);' />
 	<div>
 		<h2>
-			正在跳转......
+			登出成功
 		</h2>
 		<h3>
-			<a href="/" id='jumpto'>FIRE!</a>
+			<a class='btn btn-success' href="/">回到首页</a>
 		</h3>
 		<h4>
 			<p>如果页面没有自动跳转，请点击链接</p>
