@@ -13,8 +13,7 @@ $mysql_datebase	="short";
 $GLOBALS['debugmode']=true;
 $GLOBALS['time']=microtime();
 $GLOBALS['allowsignup']=true;
-
-
+$GLOBALS['passwdresetpage']="./passwdresetpage";
 //Mysql
 $link= mysqli_connect(
 	$mysql_host,
@@ -52,6 +51,10 @@ function checklogin($link){
 	return 0;//no login
 }
 
+function echocode($code){
+	echo json_encode(array("code"=>$code));
+	exit($code);
+}
 
 ?>
 

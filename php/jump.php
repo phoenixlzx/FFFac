@@ -7,7 +7,7 @@ include("./server/config.php");
 
 if($GLOBALS['debugmode'])$timestart=microtime();
 
-$ErrorPage="./404.html";
+$ErrorPage="./404";
 
 ////Get Result From SQL////
 function select($link,$id){

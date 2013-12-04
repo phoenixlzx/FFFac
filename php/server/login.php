@@ -17,7 +17,7 @@ function checkpasswd($link,$username,$passwd){
 		mysqli_stmt_bind_param($stmt,"s",$username);
 		mysqli_stmt_execute($stmt);
 		$row=mysqli_fetch_row(mysqli_stmt_get_result($stmt));
-	//$row=mysqli_fetch_row(mysqli_query($link,"select * from user where username='$username';"));
+		//$row=mysqli_fetch_row(mysqli_query($link,"select * from user where username='$username';"));
 		if($row==false)return 201;//No User found
 		if($passwd!==$row[2])return 202;//Password Error
 		if($row[4]==99)return 203;//User was banned
@@ -46,21 +46,16 @@ function login($link,$post){
 		if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 		exit(1);
 	}
-	echo json_encode(array('code'=>$row));
-	if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
-	exit($row);
+	return $row;
 }
 ////Log Out Function
 function logout($link){
 	$user=checklogin($link);
 	if($user==0){
-		echo json_encode(array("code"=>204));
-		if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
-		exit(204);
+		return 204;
 	}
 	else{
 		if($cookie=$_COOKIE['cookie']){
-			echo $cookie;
 			mysqli_query($link,"delete from cookie where cookie='$cookie';");
 			$log= $user[1]." logout with cookie ".$cookie;
 			mysqli_query($link,"insert into log values(current_timestamp,'$user[0]','logout','$log');");//log 
@@ -71,54 +66,54 @@ function logout($link){
 			if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
 			exit(1);
 		}
-		echo json_encode(array("code"=>204));
-		if($GLOBALS['debugmode'])echo microtime()-$GLOBALS['time'];
-		exit(204);
+		return 204;
 	}
 }
 ////Signup Function////
 function checkusernameinuse($link,$name){
-	if(mysqli_fetch_row(mysqli_query($link,"select * from user where username='$name';"))==false)return false;
+	if($stmt=mysqli_prepare($link,"select * from user where username=?")){
+		mysqli_stmt_bind_param($stmt,"s",$username);
+		mysqli_stmt_execute($stmt);
+		$row=mysqli_fetch_row(mysqli_stmt_get_result($stmt));
+		if($row==false)return false;
+	}
 	return true;
 }
 
 function checkusername($link,$name){
 	if(checkusernamelegal($_POST['username'])==false){
-		echo json_encode(array("code"=>401));
-		exit(401);
+		return 401;
 	}
 	if(checkusernameinuse($link,$name)==true){
-		echo json_encode(array("code"=>206));
-		exit(206);
+		return 206;
 	}
-   return true;	
+	return true;	
 }
 
 function checkemail($link,$email){
 	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-		echo json_encode(array("code"=>403));
-		exit(403);
+		return 403;
 	}
 	if(mysqli_fetch_row(mysqli_query($link,"select * from user where email='$email';"))==false) return true;
-	echo json_encode(array("code"=>207));
-	exit(207);
+	return 207;
 }
 
 
 function signup($link){
 	if($GLOBALS['allowsignup']===false){
-		echo json_encode(array("code"=>205));
-		exit(205);
+		return 205;
 	}
-	checkusername($link,$_POST['username']);
-	checkemail($link,$_POST['email']);
+	$code1=checkusername($link,$_POST['username']);
+	$code2=checkemail($link,$_POST['email']);
+	if($code1!==true)return $code1;
+	if($code2!==true)return $code2;
 	$username=$_POST['username'];
 	$passwd=$_POST['passwd'];
 	$email=$_POST['email'];
 	if($stmt=mysqli_prepare($link,"insert into user values (?,'',?,?,1,0)")){
 		mysqli_stmt_bind_param($stmt,"sss",$username,$passwd,$email);
 		mysqli_stmt_execute($stmt);
-	//if(mysqli_query($link,"insert into user values ('$username','','$passwd','$email',1,0);")){
+		//if(mysqli_query($link,"insert into user values ('$username','','$passwd','$email',1,0);")){
 		$log="user signup ".$username."at[".$_SERVER['REMOTE_ADDR']."]use ".$_SERVER['HTTP_USER_AGENT'];
 		mysqli_query($link,"insert into log values(current_timestamp,'0','adduser','$log');");
 		if($row=mysqli_fetch_row(mysqli_query($link,"select * from user where username='$username';"))){
@@ -144,10 +139,13 @@ function sendvalidemail($link,$userid,$email){
 		$message="您好：\n 您收到这封邮件的原因是因为你注册成为了FFF.ac成员。请点击以下连接以验证邮箱：\n http://fff.ac/login.php?function=checkmailcode&code=".$code."\n 感谢您的注册，如果这不是本人操作的，请忽略这封邮件。";
 		$headers="From: welcome@fff.ac";
 		if(mail($to,$subject,$message,$headers)){
+			$log="userid[".$userid."]requier a email valid code [".$code."].";
+			mysqli_query($link,"insert into log values(current_timestamp,'$userid','validemail','$log');");
 			return true;
 		}
+		return 302;
 	}
-	return false;
+	return 303;
 }
 
 function checkmailcode($link){
@@ -156,31 +154,99 @@ function checkmailcode($link){
 		mysqli_stmt_bind_param($stmt,'s',$code);
 		mysqli_stmt_execute($stmt);
 		if($row=mysqli_fetch_row(mysqli_stmt_get_result($stmt))){
-	//if($row=mysqli_fetch_row(mysqli_query($link,"select * from code where code='$code';"))){
+			//if($row=mysqli_fetch_row(mysqli_query($link,"select * from code where code='$code';"))){
 			if(time()<strtotime($row[2])){
 				if($row[1]==1){
 					$id=$row[3];
-					if($mysqli_query($link,"update user set emailvalid='1' where id='$id';"))return true;
+					if($mysqli_query($link,"update user set emailvalid='1' where id='$id';")){
+						mysqli_query($link,"delete from code where code='$code';");
+						$log="userid[".$id."]valid email use code [".$code."].";
+						mysqli_query($link,"insert into log values(current_timestamp,'$userid','validemail','$log');");
+						return true;
+						return 304;
+					}
+					return 501;
 				}
-			}	
+				return 502;	
+			}
 		}
+		return 503;
 	}
-	return false
 }
 
-function requirvalidemail($link){
+function requirevalidemail($link){
 	$user=checklogin($link);
 	if(is_array($user)){
-		$row=0;
+		if($mysqli_fetch_row($mysqli_query($link,"select * from user where user = '$user';"))){
+			if($row[5]==0){
+				$code=sendvalidemail($link,$row[1],$row[3]);
+				if($code===true)echo json_encode(array("code"=>101,"email"=>$row[3]));
+				return $code;
+			}
+			return 208;
+		}
+		return 201;
 	}
+	return 204;
 }
+////reset passwd////
 
+function changepasswd($link){
+	$user=checklogin($link);
+	$oldpasswd===$_POST['oldpasswd'];
+	$newpasswd===$_POST['newpasswd'];
+	if(is_array($user)){
+		if($row=$mysqli_fetch_row($mysqli_query($link,"select * from user where username='$user[1]';"))){
+			if($oldpasswd===$row[2]){
+				if($stmt=mysqli_prepare($link,"update user set passwd=? where username=?")){
+					mysqli_stmt_bind_param($stmt,"ss",$newpasswd,$user[1]);
+					if(mysqli_stmt_execute($stmt)){
+						echo json_encode(array("code"=>101));
+						exit(1);
+					}
+				}
+				return 301;
+			}
+			return 202;
+		}
+		return 201;
+	}
+	return 204;
+}
+////Send Password Reset code
+function sendpasswdreset($link){
+	if($stmt=mysqli_prepare($link,"select * from user where username=?")){
+		mysqli_stmt_bind_param($stmt,"s",$_POST['username']);
+		mysqli_stmt_execute($stmt);
+		$row=mysqli_fetch_row(mysqli_stmt_get_result($stmt));
+		if($row==false)return 201;
+		$email=$row[3];
+		$userid=$row[1];
+		if($email!==$_POST['email'])return 209;
+		$expiretime=time()+3600*24;
+		$date=date("Y-m-d",$expiretime);
+		$code=substr(MD5($userid.$GLOBALS['safecode'].$email.microtime()),16);
+		if(mysqli_query($link,"insert into code values ('$code',2,'$date','$userid');")){
+			$to=$email;
+			$subject="FFFAC 的密码重置邮件";
+			$message="您好：\n 您收到这封邮件的原因是因为你要求重置你的密码。请点击以下连接以继续：\n http://fff.ac/login.php?function=resetpasswdpage&code=".$code."\n 感谢您的注册，如果这不是本人操作的，请忽略这封邮件。";
+			$headers="From: password@fff.ac";
+			if(mail($to,$subject,$message,$headers)){
+				$log="userid[".$userid."]requier a password reset code [".$code."].";
+				mysqli_query($link,"insert into log values(current_timestamp,'$userid','validemail','$log');");
+				return 101;
+			}
+			return 302;
+		}
+		return 303;
+	}
+	return 301;
 
-
+}
 ////main function
 if($_GET['function']==="login"){
-	login($link,$_POST);
-	exit(1);
+	$code=login($link,$_POST);
+	echocode($code);
 }
 if($_GET['function']==="checklogin"){
 	$user=checklogin($link);
@@ -196,31 +262,45 @@ if($_GET['function']==="checklogin"){
 	}
 }
 if($_GET['function']==="logout"){
-	logout($link);
-	exit(1);
+	$code=logout($link);
+	echocode($code);
 }
 if($_GET['function']==="checkusername"){
 	if(checkusername($link,$_POST['username'])===true)echo json_encode(array("code"=>101));
 	exit(1);
 }
 if($_GET['function']==="signup"){
-	signup($link);
-	exit(1);
+	$code=signup($link);
+	echocode($code);
 }
 if($_GET['function']==="checkmailcode"){
-	if(checkmailcode($link)===true){
+	$code=checkmailcode($link);
+	if($code===true){
 		echo "valid OK";
 		exit(1);
 	}
-	echo "code error";
-		exit(2);
+	echo "code error".$code;
+	exit($code);
 }
-
-
-
-
-
-
+if($_GET['function']==="requirevalidemail"){
+	$code=requirevalidemail($link);
+	echocode($code);
+}
+if($_GET['function']==="changepasswd"){
+	$code=changepasswd($link);
+	echocode($code);
+}
+if($_GET['function']==="sendpasswdreset"){
+	$code=sendpasswdreset($link);
+	echocode($code);
+}
+if($_GET['function']==="resetpasswdpage"){
+	setcookie('code',$_GET['code'],time()+600);	
+	$page=fopen($passwdresetpage,'r');
+	echo fread($fopen,100000);
+	fclose($page);
+	exit(1);
+}
 
 ?>
 
