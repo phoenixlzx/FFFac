@@ -443,6 +443,7 @@ module.exports = function(app) {
     });
 
     app.get('/:shorturi', function(req, res) {
+        // console.log(req.params.shorturi);
         Uri.getURI(req.params.shorturi, function(err, doc) {
             // console.log(doc);
             if (err) {
@@ -450,7 +451,7 @@ module.exports = function(app) {
             }
             if (!doc) {
                 // TODO Uri 404 Page
-                res.redirect('/');
+                return res.redirect('/');
             }
             res.render('jump',{
                 title: res.__('JUMPING') + ' - ' + config.siteName,

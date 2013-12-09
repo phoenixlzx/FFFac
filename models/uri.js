@@ -20,7 +20,6 @@ MongoClient.connect(config.mongoserver, {w : 1}, function(err, db) {
             "origin": longurl,
             "short": shorturl
         }, {safe: true}, function(err) {
-            db.close();
             callback(err, shorturl);
         });
     }
