@@ -420,19 +420,23 @@ module.exports = function(app) {
     });
 
     app.post('/geturi', function(req, res) {
+        var longurl = req.body.longurl;
         try {
-            check(req.body.longurl, 'URL_INVALID').isUrl();
+            check(longurl, 'URL_INVALID').isUrl();
         } catch (e) {
             return res.send(400, res.__(e.message));
         }
-        Uri.checkLong(req.body.longurl, function(err, doc) {
+        if (longurl.indexOf('://') === -1) {
+            longurl = 'http://' + longurl;
+        }
+        Uri.checkLong(longurl, function(err, doc) {
             if (err) {
                 res.send(502, err.message);
             }
             if (doc) {
                 res.send(200, doc.short);
             } else {
-                Uri.generateURI(req.body.longurl, function(err, shortUri) {
+                Uri.generateURI(longurl, function(err, shortUri) {
                     if (err) {
                         res.send(502, err.message);
                     }
