@@ -421,17 +421,20 @@ module.exports = function(app) {
 
     app.post('/geturi', function(req, res) {
         var longurl = req.body.longurl;
+        if (longurl.indexOf('://') === -1) {
+            longurl = 'http://' + longurl;
+        }
         try {
             check(longurl, 'URL_INVALID').isUrl();
         } catch (e) {
             return res.send(400, res.__(e.message));
         }
-        if (longurl.indexOf('://') === -1) {
-            longurl = 'http://' + longurl;
-        }
         Uri.checkLong(longurl, function(err, doc) {
             if (err) {
                 res.send(502, err.message);
+            }
+            if (longurl.startsWith('http://fff.ac') || longurl.startsWith('https://fff.ac')) {
+                return res.send(400);
             }
             if (doc) {
                 res.send(200, doc.short);
@@ -456,7 +459,10 @@ module.exports = function(app) {
             if (!doc) {
                 // TODO Uri 404 Page
                 return res.redirect('/');
+            } else {
+                res.redirect(doc.origin);
             }
+            /*
             res.render('jump',{
                 title: res.__('JUMPING') + ' - ' + config.siteName,
                 siteName: config.siteName,
@@ -466,6 +472,7 @@ module.exports = function(app) {
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
             });
+            */
         });
     });
 }
@@ -485,4 +492,11 @@ function checkNotLogin(req, res, next) {
         return res.redirect('/');
     }
     next();
+}
+
+// Useful stuff
+if (typeof String.prototype.startsWith != 'function') {
+  String.prototype.startsWith = function (str){
+    return this.slice(0, str.length) == str;
+  };
 }
