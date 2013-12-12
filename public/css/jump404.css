@@ -5,6 +5,9 @@ html, body {
 	padding-top: 20px;
 	/* The html and body elements cannot have any padding or margin. */
 }
+body {
+	background-image: url(/image/a.png);
+}
 h1,h2,h3,h4,h5 {
 	text-align: center;
 }

@@ -12,7 +12,7 @@
     "REG_SUCCESS": "注册成功",
     "LOGIN_FAIL": "登陆失败",
     "LOGIN_SUCCESS": "登陆成功",
-    "MY_DOMAINS": "我的域名",
+    "SPECIAL": "自定义短域名",
     "MY_ACCOUNT": "我的帐户",
     "NO_PERMISSION": "您无权执行此操作",
     "LOGOUT_SUCCESS": "登出成功",
@@ -63,10 +63,10 @@
     "ADD_RECORD": "添加记录",
     "RECORD_LIST": "解析记录列表",
     "RECORD_DELETION_WARNING": "您将要删除解析记录，这可能导致您的域名记录无法解析。您确定删除下列记录吗？",
-    "DOMAIN_RECORD": "解析记录",
+    "DOMAIN_RECORD": "长域名",
     "DOMAIN_ID": "域名ID",
     "RECORD_TYPE": "记录类型",
-    "RECORD_CONTENT": "记录值",
+    "RECORD_CONTENT": "短域名代码",
     "RECORD_PRIORITY": "优先级",
     "TTL": "TTL",
     "OPTIONS": "选项",
@@ -158,6 +158,11 @@
     "GEO_ERROR": "地区代码不正确",
     "ADD_RECORD_HELP_1": "有问题？参见",
     "ADD_RECORD_HELP_2": "帮助文档",
-    "JUMPING": "跳转中"
+    "JUMPING": "跳转中",
+    "SITENAME": "FFF传送",
+    "SITETAGLINE": "我们的事业是正义的！",
+    "SENDLONG": "发送长域名",
+    "SENGLONGAGAIN": "再次发送",
+    "FIREFIREFIRE": "烧！烧！烧！"
 }
 
