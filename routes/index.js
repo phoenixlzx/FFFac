@@ -48,7 +48,7 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/signup', checkNotLogin, function(req, res) {
+    app.post('/gosignup', checkNotLogin, function(req, res) {
         if (!config.allowReg) {
             res.redirect('/');
             return req.flash(res.__("REG_NOT_ALLOWED"));
@@ -65,8 +65,8 @@ module.exports = function(app) {
             check(repeatPassword, 'PASSWORD_NOT_EQUAL').equals(password);
             check(mail, 'EMAIL_INVALID').len(4, 64).isEmail();
         } catch (e) {
-            req.flash('error', res.__(e.message));
-            return res.redirect('/signup');
+            // req.flash('error', res.__(e.message));
+            return res.send(500);
         }
 
         // get password hash
@@ -86,20 +86,20 @@ module.exports = function(app) {
                 err = 'USER_EXISTS';
             }
             if(err) {
-                req.flash('error', res.__(err));
-                return res.redirect('/signup');
+                // req.flash('error', res.__(err));
+                return res.send(502);
             }
             newUser.save(function(err){
                 if(err){
-                    req.flash('error',err);
-                    return res.redirect('/signup');
+                    //req.flash('error',err);
+                    return res.send(502);
                 }
                 // Send verification Email.
                 var activeLink = 'http://' + config.url + '/activate?activekey=' + newUser.activekey;
                 if (config.ssl) {
                     activeLink = 'https://' + config.url + '/activate?activekey=' + newUser.activekey;
                 }
-                // console.log(activeLink);
+                console.log(activeLink);
                 var mailOptions = {
                     from: config.serviceMailSender, // sender address
                     to: newUser.email, // list of receivers
@@ -115,8 +115,8 @@ module.exports = function(app) {
                     }
                     smtpTransport.close();
                     // req.session.user = newUser; // store user information to session.
-                    req.flash('success',res.__('REG_AWAITING_VERIFICATION'));
-                    res.redirect('/');
+                    // req.flash('success',res.__('REG_AWAITING_VERIFICATION'));
+                    res.send(200);
                 });
 
             });
@@ -161,7 +161,7 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/login', checkNotLogin, function(req, res){
+    app.post('/gologin', checkNotLogin, function(req, res){
         // Generate password hash
         var hash = crypto.createHash('sha256'),
             password = hash.update(req.body.password).digest('hex');
@@ -176,8 +176,9 @@ module.exports = function(app) {
         */
         User.get(req.body.username, function(err, user) {
             if (!user) {
-                req.flash('error', res.__('LOGIN_FAIL'));
-                return res.redirect('/login');
+                // req.flash('error', res.__('LOGIN_FAIL'));
+
+                return res.send(404); // res.redirect('/login');
             } else if (user.password != password) {
                 // Send warning message.
                 var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
@@ -195,17 +196,17 @@ module.exports = function(app) {
                         console.log(err);
                     }
                     smtpTransport.close();
-                    req.flash('error', res.__('LOGIN_FAIL'));
-                    return res.redirect('/login');
+                    // req.flash('error', res.__('LOGIN_FAIL'));
+                    return res.send(401); // res.redirect('/login');
                 });
             } else {
                 if (user.role == 'inactive') {
-                    req.flash('error', res.__('USER_NOT_ACTIVATED'));
-                    return res.redirect('/login');
+                    // req.flash('error', res.__('USER_NOT_ACTIVATED'));
+                    return res.send(401); // res.redirect('/login');
                 } else {
                     req.session.user = user;
-                    req.flash('success', res.__('LOGIN_SUCCESS'));
-                    res.redirect('/');
+                    // req.flash('success', res.__('LOGIN_SUCCESS'));
+                    res.send(200);
                 }
             }
         });
@@ -416,6 +417,17 @@ module.exports = function(app) {
                 req.session.user = null;
                 res.redirect('/login');
             });
+        });
+    });
+
+    app.get('/special', checkLogin, function(req, res) {
+        res.render('special',{
+            title: res.__('SPECIAL') + ' - ' + config.siteName,
+            siteName: config.siteName,
+            allowReg: config.allowReg,
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
         });
     });
 
