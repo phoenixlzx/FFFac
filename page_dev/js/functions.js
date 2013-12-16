@@ -36,9 +36,6 @@ $(document).ready(function() {
 
 	$("#fireshout").click(function() {
 		if ($('#fireshout span:last').attr("style") === "display: none;") {
-			$("#shorturl").animate({width: "450px"});
-			$("#fireshout").animate({width: "200px"},'normal',selectshort);
-			$('#fireshout span:first').fadeOut("fast", fadeshort);
 			$.ajax({
 				type: "POST",
 				url: 'geturi',
@@ -49,6 +46,9 @@ $(document).ready(function() {
 				error: function(data) {
 					$('#shorturl').attr('readonly', 'readonly').val('Error...' + data.responseText).click(selectshort);
 				}
+			$("#shorturl").animate({width: "450px"},5500);
+			$("#fireshout").animate({width: "200px"},5500,selectshort);
+			$('#fireshout span:first').fadeOut("fast", fadeshort);
 			});
 		} 
 		else {

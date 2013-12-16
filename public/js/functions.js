@@ -36,19 +36,27 @@ $(document).ready(function() {
 
 	$("#fireshout").click(function() {
 		if ($('#fireshout span:last').attr("style") === "display: none;") {
+			$('#fireshout').attr('disabled', 'disabled');
 			$.ajax({
 				type: "POST",
 				url: 'geturi',
 				data: {"longurl": $('#shorturl').val()},
 				success: function(data) {
 					$('#shorturl').attr('readonly', 'readonly').val('http://fff.ac/' + data).click(selectshort);
+					$('#shorturl').select();
+					$('#fireshout span:first').animate({width: "450px"},500,function(){
+						$('#fireshout').removeAttr('disabled');
+					});
 				},
 				error: function(data) {
-					$('#shorturl').attr('readonly', 'readonly').val('Error...' + data.responseText).click(selectshort);
+					$('#shorturl').attr('readonly', 'readonly').val('Error...' + data.responseText);
+					$('#fireshout span:first').animate({width: "450px"},1000,function(){
+						$('#fireshout').removeAttr('disabled');
+					});
 				}
 			});
 			$("#shorturl").animate({width: "450px"});
-			$("#fireshout").animate({width: "200px"},'normal',selectshort);
+			$("#fireshout").animate({width: "200px"});
 			$('#fireshout span:first').fadeOut("fast", fadeshort);
 		} 
 		else {
