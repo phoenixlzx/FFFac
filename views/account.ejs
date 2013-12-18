@@ -1,46 +1,5 @@
-<!DOCTYPE html>
-<head>
-	<title><%= title %></title>
-	<meta name="keywords" content="FFF传送" />
-	<meta charset="utf-8" />
-	<link rel="icon" 	   href="image/fff-icon-001.png" />
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/style.css" />
-
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	<script src="/javascripts/html5shiv.js"></script>
-	<script src="/javascripts/respond.min.js"></script>
-	<![endif]-->
-
-</head>
-<body>
-<!-- nav bar -->
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/"><span class="glyphicon glyphicon-fire firefiresmall"></span>&thinsp;FFF传送</a>
-			</div>
-
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/special">特殊传送</a></li>
-					<li><a href="/about">关于FFF传送</a></li>
-					<li><a href="/contact">联系传送部长</a></li>
-				</ul>
-				<form class="navbar-form navbar-right">
-					<small style='color: #F00' id='navmotd'>烧&thinsp;!&emsp;</small>
-					<a href='/account' class="btn btn-success">FFF团卡</a>
-					<button type="submit" class="btn btn-primary">贤者模式</button>
-				</form>
-			</div><!--/.nav-collapse -->
-		</div>
-	</div>
+<%-include header%>
+<%-include navbar%>
 
 <!-- main -->
 	<div class="container" id='wrap'>
@@ -49,48 +8,48 @@
 				<h1 style="text-align: center">
 					<span class="glyphicon glyphicon-credit-card firefire fffcard"></span>
 					<span class="glyphicon glyphicon-fire firefire"></span>
-					<span class='FFFshort'>FFF团卡</span>
+					<span class='FFFshort'><%= __('MY_ACCOUNT') %></span>
 					<span class="glyphicon glyphicon-fire firefire"></span>
 					<span class="glyphicon firefire"></span>
 					<br />
-					<small id='username'>example</small>&emsp;
+					<small id='username'><%= user.name %></small>&emsp;
 				</h1>
 				<hr style='margin: 1px;	box-shadow: 0px -10px 40px 5px rgba(255,70,0,0.35);' />
 				<h2 style="margin: 10px 20px 20px 20px;text-align: left">
-					<span>团员信息更改表:&nbsp;</span>
-					<small style="font-size: 15px">团员信息更新后，需要重新配对暗号</small>
+					<span><%= __('EDIT_USER_INFO') %>:&nbsp;</span>
+					<small style="font-size: 15px"><%= __('USER_HELP_INFO') %></small>
 				</h2>
 				<div>
 					<form method="post" id="user-form" class="form-horizontal" role="form">
 						<input type="hidden" name="_csrf" />
 						<fieldset>
 							<div class="form-group">
-								<label class="col-lg-3 control-label">团员名</label>
+								<label class="col-lg-3 control-label"><%= __('USERNAME') %></label>
 								<div class="col-lg-7">
 									<p class="form-control-static" id='username'></p>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="email" class="col-lg-3 control-label">E-Mail</label>
+								<label for="email" class="col-lg-3 control-label"><%= __('EMAIL') %></label>
 								<div class="col-lg-7">
 									<input class="form-control" type="text" id="email" name="email" value="example@example.com" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-3 control-label" for="password">当前暗号</label>
+								<label class="col-lg-3 control-label" for="password"><%= __('CURRENT_PASSWORD') %></label>
 								<div class="col-lg-7">
 									<input type="password" class="form-control" id="password" name="password" />
 								</div>
 							</div>
 							<hr />
 							<div class="form-group">
-								<label class="col-lg-3 control-label" for="newpass">新暗号</label>
+								<label class="col-lg-3 control-label" for="newpass"><%= __('NEW_PASSWORD') %></label>
 								<div class="col-lg-7">
 									<input type="password" class="form-control" id="newpass" name="newpass" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-lg-3 control-label" for="password-repeat">确认新暗号</label>
+								<label class="col-lg-3 control-label" for="password-repeat"><%= __('REPEAT_NEW_PASSWORD') %></label>
 								<div class="col-lg-7">
 									<input type="password" class="form-control" id="password-repeat" name="password-repeat" />
 								</div>
@@ -99,7 +58,7 @@
 								<div class="col-lg-offset-3 col-lg-10">
 									<button type="button" class="btn btn-success" id='accountchange'>
 										<span class="glyphicon glyphicon-fire firefiresmall"></span>
-										<span>FFF!</span>
+										<span><%= __('FFF') %></span>
 										<span class="glyphicon glyphicon-fire firefiresmall"></span>
 									</button>
 								</div>
@@ -114,25 +73,19 @@
 					<h1 style="text-align: center">
 						<span class="glyphicon glyphicon-credit-card firefire fffcard"></span>
 						<span class="glyphicon glyphicon-fire firefire"></span>
-						<span class='FFFshort'>FFF团卡</span>
+						<span class='FFFshort'><%= __('MY_ACCOUNT') %></span>
 						<span class="glyphicon glyphicon-fire firefire"></span>
 						<span class="glyphicon firefire"></span>
 						<br />
 						<small id='username'></small><small>&emsp;</small>
 					</h1>
-						<p class='msgres'>新暗号配对成功！</p>
+						<p class='msgres'><%= __('PASSWORD_UPDATED') %></p>
 						<button type="button" class="btn btn-lg btn-danger btn-block goshort" id="successbackaccount">
 							<span >壮哉大FFF团！！</span>
 						</button>
 					<hr />
 					<div class="account-inner">
-						<div class='fffire'>
-							<p>烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧</p>
-							<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
-							<p>烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧</p>
-							<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
-							<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
-						</div>
+						<%-include ffffire%>
 					</div>
 				</div>
 			</div>
@@ -142,44 +95,23 @@
 					<h1 style="text-align: center">
 						<span class="glyphicon glyphicon-credit-card firefire fffcard"></span>
 						<span class="glyphicon glyphicon-fire firefire"></span>
-						<span class='FFFshort'>FFF团卡</span>
+						<span class='FFFshort'><%= __('MY_ACCOUNT') %></span>
 						<span class="glyphicon glyphicon-fire firefire"></span>
 						<span class="glyphicon firefire"></span>
 						<br />
 						<small id='username'></small><small>&emsp;</small>
 					</h1>
-						<p class='msgres'>新暗号配对失败！</p>
+						<p class='msgres'><%= __('PASSWORD_UPDATED_FAIL') %></p>
 						<button type="button" class="btn btn-lg btn-primary btn-block goshort" id="failbackaccount">
-							<span >重新配对&ensp;</span>
+							<span ><%= __('RETRY_CHANGE_PW') %>&ensp;</span>
 						</button>
 					<hr />
 					<div class="account-inner">
-						<div class='fffire'>
-							<p>烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧&emsp;&emsp;烧烧烧烧烧</p>
-							<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
-							<p>烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧&emsp;&emsp;&emsp;烧烧烧烧</p>
-							<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
-							<p>烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;烧</p>
-						</div>
+						<%-include ffffire%>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-<!-- footer -->
-	<div id="footer">
-		<div class="container">
-			<p class="text-muted credit">
-				2013&emsp;FFF传送&emsp;
-				<span class="glyphicon glyphicon-fire firefiresmall"></span>
-				&emsp;我们的事业是正义的！
-			</p>
-		</div>
-	</div>
-
-<!--Bootstrap-->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/functions.js"></script>
-</body>
-</html>
+	</div><!-- /.container -->
+	
+<%-include footer%>
