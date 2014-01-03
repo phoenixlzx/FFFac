@@ -19,7 +19,7 @@
 						<li><a href="/contact"><%= __('CONTACT') %></a></li>
 					<% } %>
 				</ul>
-				<form class="navbar-form navbar-right">
+				<div class="navbar-form navbar-right">
 					<% if(!user) { %>
 						<a href="/login" class="btn btn-success"><%= __('LOGIN') %></a>
 					<% if(allowReg) { %>
@@ -34,7 +34,7 @@
 							</div>
 						</form>
 					<% } %>
-				</form>
+				</div>
 			</div><!--/.nav-collapse -->
 		</div>
 	</div>
